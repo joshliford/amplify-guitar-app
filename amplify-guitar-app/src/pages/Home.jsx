@@ -10,15 +10,15 @@ export default function Home( { userName, level, xp, xpToNextLevel, streak }) {
                 <div className="flex flex-col m-6 pb-4 border-2 w-full mx-auto max-w-4xl">
                     <div className="border-b-2 p-6">
                         <div>
-                            <h3 className="mb-4 px-3">Welcome Back, {userName}!</h3>
+                            <h3 className="mb-4 px-3 text-xl font-bold">Welcome Back, {userName}!</h3>
                         </div>
-                        <div className="flex flex-row justify-between px-3 py-2">
-                            <p className="">Level: {level}</p>
-                            <p className="">Streak: {streak} days</p>
+                        <div className="flex flex-row justify-between px-3 py-2 text-lg">
+                            <p>Level: {level}</p>
+                            <p>Streak: {streak} days</p>
                         </div>
                     </div>
                     <div className="m-4">
-                        <div className="flex flex-row justify-between px-5 py-2">
+                        <div className="flex flex-row justify-between px-5 py-2 font-semibold">
                             <p>EXPERIENCE POINTS</p>
                             <p>{`${xp} / ${xpToNextLevel} XP`}</p>
                         </div>
