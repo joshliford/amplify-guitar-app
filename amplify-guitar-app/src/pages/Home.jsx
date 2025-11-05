@@ -1,7 +1,8 @@
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import XPBar from "../components/XPBar"
+import SectionCard from '../components/SectionCard'
 
-export default function Home( {xp, xpToNextLevel }) {
+export default function Home( { userName, level, xp, xpToNextLevel, streak }) {
 
     return (
         <div>
@@ -9,11 +10,11 @@ export default function Home( {xp, xpToNextLevel }) {
                 <div className="flex flex-col m-6 pb-4 border-2 w-full mx-auto max-w-4xl">
                     <div className="border-b-2 p-6">
                         <div>
-                            <h3 className="mb-4 px-3">Welcome Back, Guitarist!</h3>
+                            <h3 className="mb-4 px-3">Welcome Back, {userName}!</h3>
                         </div>
                         <div className="flex flex-row justify-between px-3 py-2">
-                            <p className="">Level: 10</p>
-                            <p className="">Streak: 9 days</p>
+                            <p className="">Level: {level}</p>
+                            <p className="">Streak: {streak} days</p>
                         </div>
                     </div>
                     <div className="m-4">
@@ -27,45 +28,35 @@ export default function Home( {xp, xpToNextLevel }) {
                     </div>
                 </div>
 
-                <div className="flex flex-col m-6 pb-4 border-2 w-full mx-auto max-w-4xl">
-                    <div className="border-b-2 p-6">
-                        <div>
-                            <h4 className="flex m-4">Jump Back Into Active Lessons</h4>
-                        </div>
-                    </div>
+                <SectionCard title={"Jump Back Into Active Lessons"}>
                     <div className="flex flex-col items-start space-y-8 m-4 p-6">
-                        <button className="">Learn the G Chord</button>
-                        <button className="">Intro to the Guitar</button>
-                        <button className="">Mastering the A Minor Pentatonic Scale</button>
+                        <Link to={'/jamroom'} className="border-2 p-4 w-full"><p>Learn the G Chord</p></Link>
+                        <Link to={'/jamroom'} className="border-2 p-4 w-full"><p>Intro to the Guitar</p></Link>
+                        <Link to={'/jamroom'} className="border-2 p-4 w-full"><p>Mastering the A Minor Pentatonic Scale</p></Link>
                     </div>
                     <div className="flex justify-center">
                         <Link to={'/jamroom'}><button className="px-8 py-3 hover:cursor-pointer">GO TO THE JAM ROOM</button></Link>
                     </div>
-                </div>
+                </SectionCard>
 
-                <div className="flex flex-col m-6 pb-4 border-2 w-full mx-auto max-w-4xl">
-                    <div className="border-b-2 p-6">
-                        <div>
-                            <h4 className="flex justify-start m-4">Daily Challenges</h4>
-                        </div>
-                    </div>
-                        <div className="p-6">
+                <SectionCard title={"Daily Challenges"}>
+                    <div className="p-6">
                         <form className="flex flex-col p-4 gap-6 space-y-4">
-                            <label name="daily-challenge" className="border-2 p-2">
-                                <input type="checkbox"></input> Daily Challenge 1
+                            <label name="daily-challenge" className="border-2 p-2 hover:cursor-pointer">
+                                <input type="checkbox"></input> Daily Challenge 1 +25 XP
                             </label>
-                            <label name="daily-challenge" className="border-2 p-2">
-                                <input type="checkbox"></input> Daily Challenge 2
+                            <label name="daily-challenge" className="border-2 p-2 hover:cursor-pointer">
+                                <input type="checkbox"></input> Daily Challenge 2 +75 XP
                             </label>
-                            <label name="daily-challenge" className="border-2 p-2">
-                                <input type="checkbox"></input> Daily Challenge 3
+                            <label name="daily-challenge" className="border-2 p-2 hover:cursor-pointer">
+                                <input type="checkbox"></input> Daily Challenge 3 +100 XP
                             </label>
                         </form>
                     </div>
                     <div className="flex justify-center">
                         <Link to={'/shed'}><button className="px-8 py-3 hover:cursor-pointer">GO TO THE SHED</button></Link>
                     </div>
-                </div>
+                </SectionCard>
             </main>
         </div>
     )
