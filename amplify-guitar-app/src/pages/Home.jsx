@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import XPBar from "../components/XPBar"
 
-export default function Home() {
+export default function Home( {xp, xpToNextLevel }) {
 
     return (
         <div>
@@ -19,10 +19,10 @@ export default function Home() {
                     <div className="m-4">
                         <div className="flex flex-row justify-between px-5 py-2">
                             <p>EXPERIENCE POINTS</p>
-                            <p>500 / 1000 XP</p>
+                            <p>{`${xp} / ${xpToNextLevel} XP`}</p>
                         </div>
                         <div className="flex justify-center m-8">
-                            <XPBar />
+                            <XPBar xp={xp} xpToNextLevel={xpToNextLevel} />
                         </div>
                     </div>
                 </div>
