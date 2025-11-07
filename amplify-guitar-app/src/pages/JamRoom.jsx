@@ -6,11 +6,13 @@ import { scales } from "../components/Scales/scaleData"
 import { lessons } from "../components/Lessons/lessonData"
 import FilterButton from "../components/FilterButton"
 import LessonCard from "../components/Lessons/LessonCard"
+import Modal from '../components/Modal'
 
 export default function JamRoom() {
 
     const [ selectedItem, setSelectedItem ] = useState(null); {/* chord, scale, or lesson currently being viewed */}
     const [ isModalOpen, setIsModalOpen ] = useState(false); {/* open or close the modal */}
+    const [ filter, setFilter ] = useState('all'); {/* sets the JamRoom filter default to 'all' when you navigate to the page */}
 
     const handleViewItem = (item) => {
         setSelectedItem(item);
@@ -19,26 +21,42 @@ export default function JamRoom() {
 
     const handleCloseModal = () => setIsModalOpen(false);
 
+    // called when the FilterButton is clicked
+    const filterOptions = (value) => {
+        // updates filter state to be whatever was clicked (i.e. chords)
+        setFilter(value);
+    }
+
     return (
         <main>
             <div className="flex flex-row justify-center">
-                <FilterButton label={"Lessons"} value={"lessons"} />
-                <FilterButton label={"Chords"} value={"chords"} />
-                <FilterButton label={"Scales"} value={"scales"} />
-                <FilterButton label={"All"} value={"all"} />
+                <FilterButton label={"Lessons"} value={"lessons"} filterOptions={filterOptions} />
+                <FilterButton label={"Chords"} value={"chords"} filterOptions={filterOptions} />
+                <FilterButton label={"Scales"} value={"scales"} filterOptions={filterOptions} />
+                <FilterButton label={"All"} value={"all"} filterOptions={filterOptions} />
             </div>
 
             <div className="grid grid-cols-3 gap-6">
-                {chords.map((chord) => {
-                    return <ChordCard key={chord.id} title={chord.title} description={chord.description} handleViewItem={handleViewItem} />
-                })}
-                {scales.map((scale) => {
-                    return <ScaleCard key={scale.id} title={scale.title} description={scale.description} handleViewItem={handleViewItem} />
-                })}
-                {lessons.map((lesson) => {
-                    return <LessonCard key={lesson.id} title={lesson.title} description={lesson.description} handleViewItem={handleViewItem} />
-                })}
+                {(filter === 'all' || filter === 'chords') &&
+                    chords.map((chord) => {
+                        return <ChordCard key={chord.id} chord={chord} handleViewItem={handleViewItem} />
+                    })
+                }
+                {(filter === 'all' || filter === 'scales') &&
+                    scales.map((scale) => {
+                        return <ScaleCard key={scale.id} scale={scale} handleViewItem={handleViewItem} />
+                    })
+                }
+                {(filter === 'all' || filter === 'lessons') &&
+                    lessons.map((lesson) => {
+                        return <LessonCard key={lesson.id} lesson={lesson} handleViewItem={handleViewItem} />
+                })
+                }
             </div>
+
+            {selectedItem &&
+                <Modal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal} selectedItem={selectedItem} />
+            }
         </main>
     )
 }
