@@ -8,6 +8,8 @@ import FilterButton from "../components/FilterButton"
 import LessonCard from "../components/Lessons/LessonCard"
 import Modal from "../components/Modal"
 import ChordModal from "../components/Chords/ChordModal"
+import ScaleModal from "../components/Scales/ScaleModal"
+import LessonModal from '../components/Lessons/LessonModal'
 
 export default function JamRoom() {
 
@@ -55,8 +57,20 @@ export default function JamRoom() {
                 }
             </div>
 
+            {/* conditionally render the specific modal (i.e. chord, scale) based on the 'category' key/value from the corresponding object */}
             <Modal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}>
-                <ChordModal selectedItem={selectedItem} />
+                {selectedItem && selectedItem.category === "chord" &&
+                    <ChordModal selectedItem={selectedItem} />
+                }
+
+                {selectedItem && selectedItem.category === "scale" &&
+                    <ScaleModal selectedItem={selectedItem} />
+                }
+
+                {selectedItem && selectedItem.category === "lesson" &&
+                    <LessonModal selectedItem={selectedItem} />
+                }
+                
             </Modal>
 
         </main>

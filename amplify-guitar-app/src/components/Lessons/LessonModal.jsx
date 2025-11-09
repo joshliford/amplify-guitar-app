@@ -1,0 +1,33 @@
+export default function LessonModal({ selectedItem }) {
+
+    return (
+        <div>
+            <div className="border-b border-gray-300 w-full max-w-full mx-auto">
+                <h1 className="text-center font-bold text-xl mb-2">{selectedItem.title}</h1>
+            </div>
+            <div>
+                {selectedItem.sections.map((section) => (
+                    <div>
+
+                        {/* always render section heading */}
+                        <h2 className="mt-4 mb-2 w-full max-w-full font-semibold text-lg">{section.heading}</h2>
+
+                        {/* if section has text then render the text */}
+                        {section.text &&
+                            <p>{section.text}</p>
+                        }
+
+                        {/* if section has a list then loop through the list and render it */}
+                        {section.list &&
+                            <ul className="pl-4 space-y-3">
+                                {section.list.map((item, index) => {
+                                return <li key={index} className="list-disc">{item}</li>
+                            })}
+                            </ul>
+                        }
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
+}

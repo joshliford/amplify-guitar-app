@@ -5,15 +5,19 @@ export default function ChordModal({ selectedItem }) {
 
     return (
         <div>
-            <DialogTitle className="text-center font-bold mb-4">{selectedItem.title}</DialogTitle>
-            <Description className="text-center mb-6">{selectedItem.details}</Description>
-            <img src={selectedItem.image} alt={selectedItem.title} className="w-full h-auto rounded-xl shadow-lg mb-4" />
-                <Disclosure as="div" className="p-6 border-2 rounded-xl mb-4 hover:shadow-lg">
-                    <DisclosureButton className="flex py-2">
+            <div className="border-b border-gray-300 w-full max-w-[95%] mx-auto">
+                <DialogTitle className="text-center font-bold mb-2">{selectedItem.title}</DialogTitle>
+            </div>
+            <div className="w-full max-w-[95%] mx-auto">
+                <Description className="text-center mt-2 mb-4">{selectedItem.details}</Description>
+            </div>
+            <img src={selectedItem.image} alt={selectedItem.title} className="mt-6 mb-6 w-full max-w-[95%] mx-auto h-auto rounded-xl shadow-lg" />
+                <Disclosure as="div" className="p-6 w-full max-w-[95%] mx-auto border-2 rounded-xl mb-4 hover:shadow-xl hover:bg-gray-200/60 bg-gray-100 shadow-lg shadow-black/20">
+                    <DisclosureButton className="flex w-full items-center justify-between">
                         <span className="font-medium">
                             Tips/Advice
                         </span>
-                        <ChevronDown className="hover:cursor-pointer hover:text-gray-600 open:rotate-180" />
+                        <ChevronDown className="hover:cursor-pointer hover:text-gray-600" />
                     </DisclosureButton>
                     <DisclosurePanel className="text-gray-600">
                         {selectedItem.tips &&
@@ -25,9 +29,11 @@ export default function ChordModal({ selectedItem }) {
                         }
                     </DisclosurePanel>
                 </Disclosure>
-
-            {selectedItem.fingerPositions && 
-                <ul className="flex flex-col items-center">
+            
+            {selectedItem.fingerPositions &&
+            <div className="max-w-[95%] mx-auto border-t border-gray-300">
+                <p className="font-semibold text-center mb-2 mt-4 w-full">Finger Positions:</p>
+                <ul>
                     {selectedItem.fingerPositions.map((position) => {
                         let posStatus; 
                         
@@ -45,6 +51,7 @@ export default function ChordModal({ selectedItem }) {
                             </li> )
                     })}
                 </ul>
+            </div>
             }
         </div>
     )

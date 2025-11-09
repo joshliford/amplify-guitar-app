@@ -8,6 +8,7 @@ import aMajorImg from '../../assets/images/Amajor.png'
 export const chords =
     [
         {   id: 1,
+            category: "chord",
             title: "G Major",
             difficulty: "easy",
             description: "Bright, open chord used in various songs.",
@@ -27,6 +28,7 @@ export const chords =
             ]
         },
         {   id: 2,
+            category: "chord",
             title: "C Major", 
             difficulty: "easy",
             description: "Full chord that's a staple in countless genres.",
@@ -46,6 +48,7 @@ export const chords =
             ]
         },
         {   id: 3, 
+            category: "chord",
             title: "D Major",
             difficulty: "easy", 
             description: "Uplifting chord that's commonly used in Rock and Country",
@@ -65,6 +68,7 @@ export const chords =
             ]
         },
         {   id: 4, 
+            category: "chord",
             title: "A Major",
             difficulty: "easy",
             description: "Versatile chord with warm and balanced tones",
@@ -84,6 +88,7 @@ export const chords =
             ]
         },
         {   id: 5, 
+            category: "chord",
             title: "E Minor",
             difficulty: "easy",
             description: "One of the easiest and most beginner friendly chords",
@@ -103,6 +108,7 @@ export const chords =
             ]
         },
         {   id: 6, 
+            category: "chord",
             title: "F Major",
             difficulty: "intermediate",
             description: "A fairly challenging barre chord with bright and punchy tones",
