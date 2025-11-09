@@ -3,7 +3,9 @@ import XPBar from "../components/XPBar"
 import SectionCard from '../components/SectionCard'
 import { dailyChallenges } from './dailyChallenges'
 
-export default function Home( { userName, level, xp, xpToNextLevel, streak }) {
+export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addXP }) {
+
+    const threshold = 1000;
 
     return (
         <div>
@@ -11,7 +13,7 @@ export default function Home( { userName, level, xp, xpToNextLevel, streak }) {
                 <div className="flex flex-col m-6 pb-4 border-2 w-full mx-auto max-w-4xl">
                     <div className="border-b-2 p-6">
                         <div>
-                            <h3 className="mb-4 px-3 text-xl font-bold">Welcome Back, {userName}!</h3>
+                            <h3 className="mb-4 px-3 text-xl font-bold">Welcome Back, User!</h3>
                         </div>
                         <div className="flex flex-row justify-between px-3 py-2 text-lg">
                             <p>Level: {level}</p>
@@ -21,10 +23,10 @@ export default function Home( { userName, level, xp, xpToNextLevel, streak }) {
                     <div className="m-4">
                         <div className="flex flex-row justify-between px-5 py-2 font-semibold">
                             <p>EXPERIENCE POINTS</p>
-                            <p>{`${xp} / ${xpToNextLevel} XP`}</p>
+                            <p>{`${currentXP} / ${threshold} XP`}</p>
                         </div>
                         <div className="flex justify-center m-8">
-                            <XPBar xp={xp} xpToNextLevel={xpToNextLevel} />
+                            <XPBar xp={currentXP} xpToNextLevel={threshold} />
                         </div>
                     </div>
                 </div>
