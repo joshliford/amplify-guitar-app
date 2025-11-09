@@ -6,7 +6,8 @@ import { scales } from "../components/Scales/scaleData"
 import { lessons } from "../components/Lessons/lessonData"
 import FilterButton from "../components/FilterButton"
 import LessonCard from "../components/Lessons/LessonCard"
-import Modal from '../components/Modal'
+import Modal from "../components/Modal"
+import ChordModal from "../components/Chords/ChordModal"
 
 export default function JamRoom() {
 
@@ -54,9 +55,10 @@ export default function JamRoom() {
                 }
             </div>
 
-            {selectedItem &&
-                <Modal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal} selectedItem={selectedItem} />
-            }
+            <Modal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}>
+                <ChordModal selectedItem={selectedItem} />
+            </Modal>
+
         </main>
     )
 }
