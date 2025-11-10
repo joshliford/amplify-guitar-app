@@ -70,7 +70,6 @@ export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, co
                 {selectedItem && selectedItem.category === "lesson" &&
                     <LessonModal selectedItem={selectedItem} handleCloseModal={handleCloseModal} addXP={addXP} completedLessons={completedLessons} markLessonComplete={markLessonComplete} />
                 }
-                
             </Modal>
 
         </main>
