@@ -16,6 +16,7 @@ export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, co
     const [ selectedItem, setSelectedItem ] = useState(null); {/* chord, scale, or lesson currently being viewed */}
     const [ isModalOpen, setIsModalOpen ] = useState(false); {/* open or close the modal */}
     const [ filter, setFilter ] = useState('all'); {/* sets the JamRoom filter default to 'all' when you navigate to the page */}
+    
 
     const handleViewItem = (item) => {
         setSelectedItem(item);
@@ -52,7 +53,7 @@ export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, co
                 }
                 {(filter === 'all' || filter === 'lessons') &&
                     lessons.map((lesson) => {
-                        return <LessonCard key={lesson.id} lesson={lesson} handleViewItem={handleViewItem} />
+                        return <LessonCard key={lesson.id} lesson={lesson} handleViewItem={handleViewItem} completedLessons={completedLessons} />
                 })
                 }
             </div>

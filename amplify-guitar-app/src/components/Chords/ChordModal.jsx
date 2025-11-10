@@ -15,7 +15,7 @@ export default function ChordModal({ selectedItem, handleCloseModal }) {
                 <Disclosure as="div" className="p-6 w-full max-w-[95%] mx-auto border-2 rounded-xl mb-4 hover:shadow-xl hover:bg-gray-200/60 bg-gray-100 shadow-lg shadow-black/20">
                     <DisclosureButton className="flex w-full items-center justify-between">
                         <span className="font-medium">
-                            Tips/Advice
+                            Tips
                         </span>
                         <ChevronDown className="hover:cursor-pointer hover:text-gray-600" />
                     </DisclosureButton>
@@ -32,7 +32,7 @@ export default function ChordModal({ selectedItem, handleCloseModal }) {
             
             {selectedItem.fingerPositions &&
             <div className="max-w-[95%] mx-auto border-t border-gray-300">
-                <p className="font-semibold text-center mb-2 mt-4 w-full">Finger Positions:</p>
+                <p className="font-semibold text-center mb-4 mt-4 w-full">Finger Positions (top to bottom):</p>
                 <ul>
                     {selectedItem.fingerPositions.map((position) => {
                         let posStatus; 

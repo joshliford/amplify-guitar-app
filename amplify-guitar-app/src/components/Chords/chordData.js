@@ -19,12 +19,12 @@ export const chords =
             ],
             image: gMajorImg,
             fingerPositions: [
-                { string: "e", fret: 3, finger: 3 },
-                { string: "B", fret: 0, finger: 0 },
-                { string: "G", fret: 0, finger: 0 },
-                { string: "D", fret: 0, finger: 0 },
+                { string: "E", fret: 3, finger: 2 },
                 { string: "A", fret: 2, finger: 1 },
-                { string: "E", fret: 3, finger: 2 }
+                { string: "D", fret: 0, finger: 0 },
+                { string: "G", fret: 0, finger: 0 },
+                { string: "B", fret: 0, finger: 0 },
+                { string: "e", fret: 3, finger: 3 }
             ]
         },
         {   id: 2,
@@ -107,7 +107,7 @@ export const chords =
                 { string: "e", fret: 0, finger: 0 }
             ]
         },
-        {   id: 6, 
+        {   id: 6,
             category: "chord",
             title: "F Major",
             difficulty: "intermediate",

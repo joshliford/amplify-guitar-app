@@ -46,7 +46,7 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
                     <div className="flex flex-col items-start space-y-8 m-4 p-6">
                         <Link to={'/jamroom'} className="border-2 p-4 w-full shadow-lg hover:shadow-xl hover:bg-gray-50"><p>Intro to the Guitar</p></Link>
                         <Link to={'/jamroom'} className="border-2 p-4 w-full shadow-lg hover:shadow-xl hover:bg-gray-50"><p>Mastering the 8 Essential Beginner Chords</p></Link>
-                        <Link to={'/jamroom'} className="border-2 p-4 w-full shadow-lg hover:shadow-xl hover:bg-gray-50"><p>Understanding Simple Strumming Patterns</p></Link>
+                        <Link to={'/jamroom'} className="border-2 p-4 w-full shadow-lg hover:shadow-xl hover:bg-gray-50"><p>Intro to Scales</p></Link>
                     </div>
                     <div className="flex justify-center">
                         <Link to={'/jamroom'}><button className="px-8 py-3 hover:cursor-pointer">GO TO THE JAM ROOM</button></Link>

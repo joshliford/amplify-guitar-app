@@ -27,8 +27,20 @@ export default function LessonModal({ selectedItem, handleCloseModal, addXP, com
                             })}
                             </ul>
                         }
+                        {section.videoUrl && (
+                            <div className="w-full aspect-video mb-4"> {/* aspect-video = 16:9 video ratio for YouTube videos */}
+                                <iframe // YouTube/Video player
+                                    src={section.videoUrl} // embeded YouTube link
+                                    title="Lesson Video"
+                                    className="w-full h-full rounded-xl" // fills the entire div container
+                                    allowFullScreen // can enable full-screen mode within the application
+                                ></iframe>
+                            </div>
+                        )}
+
                     </div>
                 ))}
+
             </div>
             <LessonFooter selectedItem={selectedItem} handleCloseModal={handleCloseModal} addXP={addXP} completedLessons={completedLessons} markLessonComplete={markLessonComplete} />
         </div>
