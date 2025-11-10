@@ -1,7 +1,7 @@
 import { Description, DialogTitle, Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { ChevronDown } from 'lucide-react'
 
-export default function ScaleModal({ selectedItem }) {
+export default function ScaleModal({ selectedItem, handleCloseModal }) {
 
     return (
         <div>
@@ -43,6 +43,10 @@ export default function ScaleModal({ selectedItem }) {
                 </ul>
             </div>
             }
+
+            <div className="mt-8">
+                <button className="cursor-pointer hover:cursor-pointer hover:bg-gray-100 border-2 rounded-lg p-2" onClick={() => handleCloseModal()}>Close</button>
+            </div>
 
         </div>
     )

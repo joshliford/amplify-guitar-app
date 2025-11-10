@@ -11,7 +11,7 @@ import ChordModal from "../components/Chords/ChordModal"
 import ScaleModal from "../components/Scales/ScaleModal"
 import LessonModal from '../components/Lessons/LessonModal'
 
-export default function JamRoom() {
+export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, completedLessons, markLessonComplete }) {
 
     const [ selectedItem, setSelectedItem ] = useState(null); {/* chord, scale, or lesson currently being viewed */}
     const [ isModalOpen, setIsModalOpen ] = useState(false); {/* open or close the modal */}
@@ -60,15 +60,15 @@ export default function JamRoom() {
             {/* conditionally render the specific modal (i.e. chord, scale) based on the 'category' key/value from the corresponding object */}
             <Modal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}>
                 {selectedItem && selectedItem.category === "chord" &&
-                    <ChordModal selectedItem={selectedItem} />
+                    <ChordModal selectedItem={selectedItem} handleCloseModal={handleCloseModal} />
                 }
 
                 {selectedItem && selectedItem.category === "scale" &&
-                    <ScaleModal selectedItem={selectedItem} />
+                    <ScaleModal selectedItem={selectedItem} handleCloseModal={handleCloseModal} />
                 }
 
                 {selectedItem && selectedItem.category === "lesson" &&
-                    <LessonModal selectedItem={selectedItem} />
+                    <LessonModal selectedItem={selectedItem} handleCloseModal={handleCloseModal} addXP={addXP} completedLessons={completedLessons} markLessonComplete={markLessonComplete} />
                 }
                 
             </Modal>

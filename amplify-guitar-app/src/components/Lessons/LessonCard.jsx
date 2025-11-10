@@ -6,7 +6,7 @@ export default function LessonCard({ lesson, handleViewItem }) { {/* Sub-card co
         <Card title={lesson.title} description={lesson.description}>
             <div className="flex justify-center">
                 <button className="mt-2 bg-gray-400 hover:cursor-pointer" onClick={() => handleViewItem(lesson)}>
-                    View Lesson
+                    Start Lesson
                 </button>
             </div>
         </Card>

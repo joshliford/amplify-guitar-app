@@ -11,8 +11,9 @@ import { calculateLevel, xpProgression, xpNeededToLevelUp } from './components/u
 
 function App() {
 
-  const [ totalXP, setTotalXP ] = useState(2250);
-  const [ streak, setStreak ] = useState(5);
+  const [ totalXP, setTotalXP ] = useState(2250); // initialize totalXP to have an initial value of 2250
+  const [ streak, setStreak ] = useState(5); // initialize streak to have an initial value of 5 days
+  const [ completedLessons, setCompletedLessons ] = useState([]); // state to store an array of completed lessons for the user; prevents 'infinite XP farming'
 
   const level = calculateLevel(totalXP);
   const currentXP = xpProgression(totalXP);
@@ -22,6 +23,16 @@ function App() {
     setTotalXP((previousXP) => previousXP + amount);
   }
 
+  // takes in a lesson Id; prev = completedLessons at that moment
+  function markLessonComplete(lessonId) {
+        setCompletedLessons(prev => {
+            const id = String(lessonId); // id is converted to a string to prevent potential type mismatch
+            return prev.includes(id) ? prev : [...prev, id]; // if the id is already in the array, do nothing, otherwise append the id to the array
+        })
+    }
+
+  
+
   return (
     <div>
       <main>
@@ -29,7 +40,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home totalXP={totalXP} streak={streak} level={level} currentXP={currentXP} xpNeeded={xpNeeded} addXP={addXP} />} />
           <Route path='/about' element={<About />} />
-          <Route path='/jamroom' element={<JamRoom totalXP={totalXP} level={level} currentXP={currentXP} xpNeeded={xpNeeded} addXP={addXP} />} />
+          <Route path='/jamroom' element={<JamRoom totalXP={totalXP} level={level} currentXP={currentXP} xpNeeded={xpNeeded} addXP={addXP} completedLessons={completedLessons} markLessonComplete={markLessonComplete} />} />
           <Route path='/shed' element={<Shed totalXP={totalXP} level={level} currentXP={currentXP} xpNeeded={xpNeeded} addXP={addXP} />} />
         </Routes>
         <Footer />

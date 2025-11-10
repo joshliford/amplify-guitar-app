@@ -9,9 +9,6 @@ export default function Modal({ isModalOpen, handleCloseModal, children }) {
                 <DialogBackdrop className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
                     <DialogPanel className="relative z-50 max-w-xl w-full max-h-[90vh] overflow-y-auto space-y-4 rounded-2xl bg-white p-6 mx-4 shadow-xl shadow-black/20">
                         {children}
-                        <div className="gap-4">
-                            <button className="cursor-pointer hover:cursor-pointer hover:bg-gray-100 border-2 rounded-lg p-2" onClick={() => handleCloseModal()}>Close</button>
-                        </div>
                     </DialogPanel>
             </Dialog>
         </div>

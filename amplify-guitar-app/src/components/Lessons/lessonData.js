@@ -5,7 +5,6 @@ export const lessons = [
         title: "Intro to Scales",
         description: "Explore what scales are and how to properly learn to play them.",
         xpReward: 500,
-        completed: false,
         difficulty: "beginner",
         sections:
         [
@@ -51,7 +50,6 @@ export const lessons = [
         title: "Mastering the 8 Essential Beginner Chords",
         description: "Get comfortable playing common open chords such as C, G, and D with smooth transitions.",
         xpReward: 500,
-        completed: false,
         difficulty: "beginner"
     },
     {
@@ -60,7 +58,6 @@ export const lessons = [
         title: "Intro to the Guitar",
         description: "Learn how to hold the guitar, tune your strings, and play your first melody.",
         xpReward: 300,
-        completed: false,
         difficulty: "beginner"
     }
 ]

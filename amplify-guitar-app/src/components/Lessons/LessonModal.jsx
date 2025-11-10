@@ -1,4 +1,6 @@
-export default function LessonModal({ selectedItem }) {
+import LessonFooter from "./LessonFooter"
+
+export default function LessonModal({ selectedItem, handleCloseModal, addXP, completedLessons, markLessonComplete }) {
 
     return (
         <div>
@@ -28,6 +30,7 @@ export default function LessonModal({ selectedItem }) {
                     </div>
                 ))}
             </div>
+            <LessonFooter selectedItem={selectedItem} handleCloseModal={handleCloseModal} addXP={addXP} completedLessons={completedLessons} markLessonComplete={markLessonComplete} />
         </div>
     )
 }
