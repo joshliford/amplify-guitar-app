@@ -6,9 +6,11 @@ export default function ChordModal({ selectedItem, handleCloseModal }) {
     return (
         <div>
             <div className="border-b border-gray-300 w-full max-w-[95%] mx-auto">
+                {/* dynamically render the title of the chord that is currently being viewed */}
                 <DialogTitle className="text-center font-bold mb-2">{selectedItem.title}</DialogTitle>
             </div>
             <div className="w-full max-w-[95%] mx-auto">
+                {/* dynamically render description of the chord being viewed */}
                 <Description className="text-center mt-2 mb-4">{selectedItem.details}</Description>
             </div>
             <img src={selectedItem.image} alt={selectedItem.title} className="mt-6 mb-6 w-full max-w-[95%] mx-auto h-auto rounded-xl shadow-lg" />
@@ -20,6 +22,7 @@ export default function ChordModal({ selectedItem, handleCloseModal }) {
                         <ChevronDown className="hover:cursor-pointer hover:text-gray-600" />
                     </DisclosureButton>
                     <DisclosurePanel className="text-gray-600">
+                        {/* if the chord has tips display them via an ordered list */}
                         {selectedItem.tips &&
                             <ol className="list-decimal px-4 mt-2 space-y-2">
                                 {selectedItem.tips.map((tip, index) => {
@@ -30,6 +33,7 @@ export default function ChordModal({ selectedItem, handleCloseModal }) {
                     </DisclosurePanel>
                 </Disclosure>
             
+            {/* if the chord has fingerPosition, display them via an unordered list */}
             {selectedItem.fingerPositions &&
             <div className="max-w-[95%] mx-auto border-t border-gray-300">
                 <p className="font-semibold text-center mb-4 mt-4 w-full">Finger Positions (top to bottom):</p>

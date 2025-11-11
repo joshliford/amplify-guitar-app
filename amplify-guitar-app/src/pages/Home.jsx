@@ -5,13 +5,18 @@ import { dailyChallenges } from './dailyChallenges'
 
 export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addXP, completedChallenges, markChallengeComplete }) {
 
+    // set the XP threshold to be a static value of 1000 for simple leveling logic
     const threshold = 1000;
 
+    // takes a challengeId and xpReward
     const handleCompletedChallenge = (challengeId, xpReward) => {
+        // converts the id to a string to match completeChallenges format
         const id = String(challengeId);
 
+        // checks if the challengeId exists in the completedChallenges array
         const isComplete = completedChallenges.includes(id);
         
+        // if the challenge is not complete - award the XP and mark the challenge as complete (prevents 'XP farming')
         if (!isComplete) {
             addXP(xpReward);
             markChallengeComplete(challengeId);
@@ -57,15 +62,17 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
                     <div className="p-6">
                         <form className="flex flex-col p-4 gap-6 space-y-4">
                             {dailyChallenges.map((challenge) => {
-                                const isComplete = completedChallenges.includes(String(challenge.id)); {/* checks if a challenge is marked complete by the user */}
+                                {/* checks if a challenge is marked complete by the user */}
+                                const isComplete = completedChallenges.includes(String(challenge.id));
                                 return <label key={challenge.id} className="flex justify-between space-x-3 border-2 p-2 hover:cursor-pointer shadow-md hover:shadow-lg hover:bg-gray-50">
                                     <div className="flex justify-start">
                                         <input type="checkbox" name={challenge.challenge}
+                                            // if the challenge is checked, disabled the checkbox to prevent 'XP farming'
                                             onClick={() => handleCompletedChallenge(challenge.id, challenge.xpReward)}
-                                            checked={isComplete} disabled={isComplete} // if the challenge is checked, disabled the checkbox to prevent 'XP farming'
+                                            checked={isComplete} disabled={isComplete}
                                             >
                                         </input>
-                                        {/* if the challenge is marked complete, put a line through the text */}
+                                        {/* if the challenge is marked complete, put a line through the text and xp value */}
                                         <p className={`${isComplete ? "line-through" : ""} pl-2`}>{challenge.challenge}</p>
                                     </div>
                                     <span className={isComplete ? "line-through" : ""}>{`${challenge.xpReward} XP`}</span>

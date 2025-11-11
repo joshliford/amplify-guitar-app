@@ -19,7 +19,7 @@ export default function LessonModal({ selectedItem, handleCloseModal, addXP, com
                             <p>{section.text}</p>
                         }
 
-                        {/* if section has a list then loop through the list and render it */}
+                        {/* if section has a list then loop through the list and render it as an unordered list */}
                         {section.list &&
                             <ul className="pl-4 space-y-3">
                                 {section.list.map((item, index) => {
