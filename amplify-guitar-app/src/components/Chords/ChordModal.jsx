@@ -1,21 +1,28 @@
 import { Description, DialogTitle, Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { ChevronDown } from 'lucide-react'
 
-export default function ChordModal({ selectedItem }) {
+export default function ChordModal({ selectedItem, handleCloseModal }) {
 
     return (
         <div>
-            <DialogTitle className="text-center font-bold mb-4">{selectedItem.title}</DialogTitle>
-            <Description className="text-center mb-6">{selectedItem.details}</Description>
-            <img src={selectedItem.image} alt={selectedItem.title} className="w-full h-auto rounded-xl shadow-lg mb-4" />
-                <Disclosure as="div" className="p-6 border-2 rounded-xl mb-4 hover:shadow-lg">
-                    <DisclosureButton className="flex py-2">
+            <div className="border-b border-gray-300 w-full max-w-[95%] mx-auto">
+                {/* dynamically render the title of the chord that is currently being viewed */}
+                <DialogTitle className="text-center font-bold mb-2">{selectedItem.title}</DialogTitle>
+            </div>
+            <div className="w-full max-w-[95%] mx-auto">
+                {/* dynamically render description of the chord being viewed */}
+                <Description className="text-center mt-2 mb-4">{selectedItem.details}</Description>
+            </div>
+            <img src={selectedItem.image} alt={selectedItem.title} className="mt-6 mb-6 w-full max-w-[95%] mx-auto h-auto rounded-xl shadow-lg" />
+                <Disclosure as="div" className="p-6 w-full max-w-[95%] mx-auto border-2 rounded-xl mb-4 hover:shadow-xl hover:bg-gray-200/60 bg-gray-100 shadow-lg shadow-black/20">
+                    <DisclosureButton className="flex w-full items-center justify-between">
                         <span className="font-medium">
-                            Tips/Advice
+                            Tips
                         </span>
-                        <ChevronDown className="hover:cursor-pointer hover:text-gray-600 open:rotate-180" />
+                        <ChevronDown className="hover:cursor-pointer hover:text-gray-600" />
                     </DisclosureButton>
                     <DisclosurePanel className="text-gray-600">
+                        {/* if the chord has tips display them via an ordered list */}
                         {selectedItem.tips &&
                             <ol className="list-decimal px-4 mt-2 space-y-2">
                                 {selectedItem.tips.map((tip, index) => {
@@ -25,9 +32,12 @@ export default function ChordModal({ selectedItem }) {
                         }
                     </DisclosurePanel>
                 </Disclosure>
-
-            {selectedItem.fingerPositions && 
-                <ul className="flex flex-col items-center">
+            
+            {/* if the chord has fingerPosition, display them via an unordered list */}
+            {selectedItem.fingerPositions &&
+            <div className="max-w-[95%] mx-auto border-t border-gray-300">
+                <p className="font-semibold text-center mb-4 mt-4 w-full">Finger Positions (top to bottom):</p>
+                <ul>
                     {selectedItem.fingerPositions.map((position) => {
                         let posStatus; 
                         
@@ -45,7 +55,11 @@ export default function ChordModal({ selectedItem }) {
                             </li> )
                     })}
                 </ul>
+            </div>
             }
+            <div className="mt-8">
+                <button className="cursor-pointer hover:cursor-pointer hover:bg-gray-100 border-2 rounded-lg p-2" onClick={() => handleCloseModal()}>Close</button>
+            </div>
         </div>
     )
 }
