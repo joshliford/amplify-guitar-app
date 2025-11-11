@@ -26,7 +26,7 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
     return (
         <div>
             <main>
-                <div className="flex flex-col m-6 pb-4 border-2 w-full mx-auto max-w-4xl">
+                <div className="flex flex-col m-6 pb-4 border-2 w-full mx-auto max-w-4xl rounded-xl shadow-lg hover:shadow-xl">
                     <div className="border-b-2 p-6">
                         <div>
                             <h3 className="mb-4 px-3 text-xl font-bold">Welcome Back, User!</h3>
