@@ -1,0 +1,72 @@
+import { useState, useRef } from 'react'
+
+export default function PracticeTimer({ runTime, setRunTime }) {
+
+    // tracks timer state and runtime in ms
+    const [ isRunning, setIsRunning ] = useState(false);
+
+    // keeps track of the active setInterval Id
+    // start timer = intervalRef.current = setInterval
+    // pause/reset timer = clearInterval(intervalRef.current)
+    const intervalRef = useRef(null);
+
+    // start or pause timer
+    const handleTimer = () => {
+        if (isRunning) {
+            clearInterval(intervalRef.current);
+            setIsRunning(false);
+        } else {
+            // current time in ms
+            // (- runTime) = allows resuming the timer from a paused state
+            const startTime = Date.now() - runTime;
+            // returns an Id that identifies the running interval
+            // stored in intervalRef.current later - won't be lost on re-render
+            intervalRef.current = setInterval(() => {
+                // gives total runtime since the start of the timer
+                setRunTime(Date.now() - startTime);
+            // executes the callback every 10 ms
+            }, 10);
+            setIsRunning(true);
+        }
+    }
+
+    // resets the timer to 0 and stops it
+    const handleReset = () => {
+        clearInterval(intervalRef.current);
+        setRunTime(0);
+        setIsRunning(false);
+    }
+
+    // format in minute:second:millisecond
+    // slice(-2) adds a leading 0 for formatting (i.e. 00:00:00)
+    const formatTime = (time) => {
+        const minutes = ("0" + Math.floor(time / 60000)).slice(-2);
+        const seconds = ("0" + Math.floor((time % 60000) / 1000)).slice(-2);
+        const milliseconds = ("0" + Math.floor((time % 1000) / 10)).slice(-2);
+
+        return `${minutes}:${seconds}:${milliseconds}`;
+    }
+
+    return (
+        <div className="flex flex-col items-center mx-auto bg-slate-200 rounded-xl shadow-lg p-12 space-y-4 m-8 w-full max-w-2xl">
+            <h2 className="font-semibold text-2xl">Practice Timer</h2>
+            <p className="text-sm">Track your practice progress</p>
+            <div>
+                <p className="text-5xl font-mono">{formatTime(runTime)}</p>
+            </div>
+            <div className="flex gap-6">
+                {/* pause/start button renders depending on isRunning state */}
+                <button onClick={handleTimer}
+                    className={
+                        `px-6 py-2 rounded-xl font-semibold transition ${
+                        isRunning ? "bg-red-600 hover:bg-red-700 hover:cursor-pointer" : "bg-green-500 hover:bg-green-600 hover:cursor-pointer"
+                    }`}>
+                    {isRunning ? "Pause" : "Start"}
+                </button>
+                {/* when clicked resets the timer to 0 per the handleReset function */}
+                <button onClick={handleReset} className="px-6 py-2 rounded-xl font-semibold transition bg-gray-200 hover:bg-gray-300 hover:cursor-pointer">Reset</button>
+            </div>
+        </div>
+    )
+
+}

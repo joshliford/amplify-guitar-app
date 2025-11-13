@@ -41,7 +41,7 @@ export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, co
 
     return (
         <main>
-            <div className="flex flex-row justify-center">
+            <div className="text-lg flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 mb-6">
                 <FilterButton label={"Lessons"} value={"lessons"} filterOptions={filterOptions} />
                 <FilterButton label={"Chords"} value={"chords"} filterOptions={filterOptions} />
                 <FilterButton label={"Scales"} value={"scales"} filterOptions={filterOptions} />
@@ -49,7 +49,7 @@ export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, co
             </div>
 
             {/* filter === 'all' indicates that it will be shown on screen by default unless a different choice is clicked */}
-            <div className="grid grid-cols-3 gap-6">
+            <div className="text-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
                 {(filter === 'all' || filter === 'chords') &&
                     chords.map((chord) => {
                         // chord={chord} - passes the entire 'chord' object (i.e. id, title, etc) from the .map() callback into ChordCard as a prop named 'chord'

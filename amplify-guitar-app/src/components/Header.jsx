@@ -8,7 +8,7 @@ export default function Header() {
         <div className="flex flex-col p-4 border-b-2">
             <header>
                 {/* links directly to the homepage when the 'Amplify' heading is clicked */}
-                <Link to={'/'}><h1>Amplify</h1></Link>
+                <Link to={'/'}><h1 className="text-3xl">Amplify</h1></Link>
                 <div className="flex flex-row justify-between">
                     <h2>Gamified Guitar Learning Dashboard</h2>
                     {/* display the NavBar within the header */}
