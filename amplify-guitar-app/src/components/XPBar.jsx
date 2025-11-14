@@ -11,7 +11,7 @@ export default function XPBar({ xp, xpToNextLevel }) {
     return (
         <div className="rounded-xl bg-gray-400 h-6 w-full">
             <span
-            className="bg-slate-800 h-full block rounded-xl"
+            className="bg-linear-to-r from-[#1F5D3D] via-[#1F5D3D] to-[#D4A574] h-full block rounded-xl"
             // fills the bar based on the xpBarWidth value
             style={{ width: xpBarWidth + '%' }}
             >   

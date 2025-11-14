@@ -3,6 +3,7 @@ import { useState } from 'react'
 import SectionCard from '../components/SectionCard'
 import { practiceGoals } from '../components/Data/practiceData'
 import PracticeTimer from '../components/PracticeTimer'
+import { CassetteTape } from 'lucide-react'
 
 export default function Shed({ addXP }) {
 
@@ -22,8 +23,8 @@ export default function Shed({ addXP }) {
     const isGoalMet = selectedGoal && runTime / 60000 >= selectedGoal.minutes;
 
     return (
-        <div className="mt-8">
-            <SectionCard title={"The Shed | Practice Room"}>
+        <main className="mt-8 bg-[#FFFEF7]">
+            <SectionCard title={"The Shed | Practice Room"} icon={<CassetteTape size={35} className="text-[#1F5D3D] m-2" />}>
                 <div className="p-4 mb-6 bg-gray-100 shadow-lg">
                     <p className="text-lg mb-8">Begin your practice session and start shredding</p>
                     <Field>
@@ -54,6 +55,6 @@ export default function Shed({ addXP }) {
                 </div>
 
             </SectionCard>
-        </div>
+        </main>
     )
 }
