@@ -3,7 +3,7 @@ export default function Card({ title, description, children }) {
 
     return (
         // card container
-        <div className="flex flex-col items-center border rounded-lg p-6 m-4 min-h-[250px] mb-8 shadow-xl hover:shadow-2xl">
+        <div className="flex flex-col items-center border rounded-lg p-6 m-4 min-h-[250px] mb-8 shadow-xl hover:shadow-2xl bg-white">
             <div> {/* title container */}
                 <h3 className="text-lg mb-4">{title}</h3>
             </div>

@@ -29,9 +29,8 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
     const reward = rewards.find(r => r.level === level);
 
     return (
-        <div>
-            <main>
-                <div className="flex flex-col m-6 pb-4 border-2 w-full mx-auto max-w-5xl rounded-xl shadow-lg hover:shadow-xl">
+            <main className="bg-[#FFFEF7]">
+                <div className="flex flex-col m-6 pb-4 border-2 w-full mx-auto max-w-5xl rounded-xl shadow-lg hover:shadow-xl bg-white">
                     <div className="border-b-2 p-6">
                         <div className="mb-4 px-3">
                             <h3 className="text-2xl font-bold">Welcome Back, Josh!</h3>
@@ -102,6 +101,5 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
                     </div>
                 </SectionCard>
             </main>
-        </div>
     )
 }

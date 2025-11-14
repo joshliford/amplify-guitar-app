@@ -40,7 +40,7 @@ export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, co
     }
 
     return (
-        <main>
+        <main className="bg-[#FFFEF7]">
             <div className="text-lg flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 mb-6">
                 <FilterButton label={"Lessons"} value={"lessons"} filterOptions={filterOptions} />
                 <FilterButton label={"Chords"} value={"chords"} filterOptions={filterOptions} />
