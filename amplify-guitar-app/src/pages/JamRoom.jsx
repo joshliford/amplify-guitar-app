@@ -43,12 +43,12 @@ export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, co
     }
 
     return (
-        <main className="bg-[#FFFEF7]">
+        <main className="bg-[#FFFEF7] font-['Nunito_Sans']">
             <div className="text-lg flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 mb-6">
-                <FilterButton label={"Lessons"} value={"lessons"} filterOptions={filterOptions} isActive={isActive} />
-                <FilterButton label={"Chords"} value={"chords"} filterOptions={filterOptions} isActive={isActive} />
-                <FilterButton label={"Scales"} value={"scales"} filterOptions={filterOptions} isActive={isActive} />
                 <FilterButton label={"All"} value={"all"} filterOptions={filterOptions} isActive={isActive} />
+                <FilterButton label={"Chords"} value={"chords"} filterOptions={filterOptions} isActive={isActive} />
+                <FilterButton label={"Lessons"} value={"lessons"} filterOptions={filterOptions} isActive={isActive} />
+                <FilterButton label={"Scales"} value={"scales"} filterOptions={filterOptions} isActive={isActive} />
             </div>
 
             {/* filter === 'all' indicates that it will be shown on screen by default unless a different choice is clicked */}

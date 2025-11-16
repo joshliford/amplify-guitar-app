@@ -1,13 +1,13 @@
 export default function About() {
 
     return (
-        <main className="bg-[#FFFEF7]">
+        <main className="bg-[#FFFEF7] font-['Nunito_Sans']">
             <section className="space-y-4 py-12 px-12">
                 <div className="flex justify-center">
-                    <h1 className="text-2xl text-center font-bold border-b-2 border-b-[#D4A574] inline-block">About Amplify</h1>
+                    <h1 className="text-2xl text-center font-bold font-['Lora'] border-b-2 border-b-[#D4A574] inline-block">About Amplify</h1>
                 </div>
                 <p>
-                    <strong className="text-[#1F5D3D] text-lg">Amplify</strong> is a gamified guitar-learning dashboard designed to make consistent practice simple, structured, and rewarding.
+                    <strong className="text-[#1F5D3D] font-['Lora'] text-lg">Amplify</strong> is a gamified guitar-learning dashboard designed to make consistent practice simple, structured, and rewarding.
                     The overall goal is to combine progress tracking and a clean practice workflow so guitar players at any skill level can build long-term habits
                     and improve through small, daily wins.
                 </p>
@@ -18,10 +18,10 @@ export default function About() {
             </section>
             <section className="space-y-4 py-12 px-12 mt-12">
                 <div className="flex justify-center">
-                    <h2 className="text-2xl text-center font-bold border-b-2 border-b-[#D4A574] inline-block">Purpose</h2>
+                    <h2 className="text-2xl text-center font-bold font-['Lora'] border-b-2 border-b-[#D4A574] inline-block">Purpose</h2>
                 </div>
                 <p className="mb-4">
-                    <strong className="text-[#1F5D3D] text-lg">Amplify</strong> was built to solve a problem I often faced: staying consistent. After playing both electric and acoustic guitar for 10+ years—often on and off
+                    <strong className="text-[#1F5D3D] font-['Lora'] text-lg">Amplify</strong> was built to solve a problem I often faced: staying consistent. After playing both electric and acoustic guitar for 10+ years—often on and off
                     as life got busier—the motivation behind Amplify was to create a tool that brings structure, clarity, and fun back into practicing.
                 </p>
                 <p>
@@ -33,12 +33,12 @@ export default function About() {
             <section className="py-12 px-12 mt-12 flex justify-center">
                 <div className="max-w-4xl w-full">
                 <div className="flex justify-center mb-6">
-                    <h3 className="text-2xl text-center font-bold border-b-2 border-b-[#D4A574] inline-block">Core Pages</h3>
+                    <h3 className="text-2xl text-center font-bold font-['Lora'] border-b-2 border-b-[#D4A574] inline-block">Core Pages</h3>
                 </div>
                 <ol className="list-decimal">
 
                     <li>
-                        <h4 className="mb-6 font-semibold text-[#1F5D3D] text-xl">The Dashboard (Homepage)</h4>
+                        <h4 className="mb-6 font-semibold font-['Lora'] text-[#1F5D3D] text-xl">The Dashboard (Homepage)</h4>
                         <p className="mb-6">
                             The central hub to view your progress including:
                         </p>
@@ -51,7 +51,7 @@ export default function About() {
                     </li>
 
                     <li>
-                        <h4 className="mb-6 font-semibold text-[#1F5D3D] text-xl">The Jam Room (Lessons, Chords, and Scales)</h4>
+                        <h4 className="mb-6 font-semibold font-['Lora'] text-[#1F5D3D] text-xl">The Jam Room (Lessons, Chords, and Scales)</h4>
                         <p className="mb-6">
                             The main learning and exploration hub where you primarily earn XP by completing lessons.
                         </p>
@@ -64,7 +64,7 @@ export default function About() {
                     </li>
                     
                     <li>
-                        <h4 className="mb-6 font-semibold text-[#1F5D3D] text-xl">The Shed (Practice Room)</h4>
+                        <h4 className="mb-6 font-semibold font-['Lora'] text-[#1F5D3D] text-xl">The Shed (Practice Room)</h4>
                         <p className="mb-4">
                             Designed for focused, distraction-free practice. The Shed turns practice into measurable, gamified activity.
                         </p>

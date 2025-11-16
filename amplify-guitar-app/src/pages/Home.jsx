@@ -30,19 +30,19 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
     const reward = rewards.find(r => r.level === level);
 
     return (
-            <main className="bg-[#FFFEF7]">
+            <main className="bg-[#FFFEF7] font-['Nunito-Sans']">
                 <div className="flex flex-col m-6 pb-4 border-2 w-full mx-auto max-w-5xl rounded-xl shadow-lg hover:shadow-xl bg-white">
                     <div className="border-b-2 border-b-[#1F5D3D] p-6">
                         <div className="mb-4 px-3">
                             <div className="flex justify-between">
-                                <h3 className="text-2xl font-bold mb-4">Welcome Back, Josh!</h3>
+                                <h1 className="text-3xl font-bold mb-4 font-['Lora']">Welcome Back, Josh!</h1>
                                 <Zap size={35} className="text-[#1F5D3D]" />
                             </div>
-                            <div className="flex gap-2 items-center">
+                            <div className="flex gap-1 items-center">
                                 <Trophy size={20} className="text-[#1F5D3D]" />
-                                <span className="font-semibold text-[#1F5D3D]">{reward.title}</span>
+                                <span className="font-semibold text-[#1F5D3D] text-lg">{reward.title}</span>
                             </div>
-                            <p className="mt-1 text-sm"><em>{reward.description}</em></p>
+                            <p className="mt-1"><em>{reward.description}</em></p>
                         </div>
                         <div className="flex flex-row justify-between px-3 py-2 text-xl font-semibold">
                             <p>Level: {level}</p>
@@ -53,7 +53,7 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
                         </div>
                     </div>
                     <div className="m-4">
-                        <div className="flex flex-row justify-between px-5 py-2 font-semibold">
+                        <div className="flex flex-row justify-between px-5 py-2 font-semibold text-lg">
                             <p>EXPERIENCE POINTS</p>
                             <p>{`${currentXP} / ${threshold} XP`}</p>
                         </div>
@@ -70,7 +70,7 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
                     <div>
                         <ul className="flex flex-col items-start space-y-8 m-4 p-6">
                             {lessons.map((lesson) => {
-                                return <Link to={'/jamroom'} className="text-lg border-2 p-4 w-full shadow-lg hover:shadow-xl hover:bg-gray-50 hover:text-[#1F5D3D]">
+                                return <Link to={'/jamroom'} className="text-xl border-2 p-4 w-full shadow-lg hover:shadow-xl hover:bg-gray-50 hover:text-[#1F5D3D] hover:font-semibold">
                                     <li key={lesson.id} className="flex justify-between">
                                         <span>{lesson.title}</span>
                                         <span className="text-amber-700 font-semibold">{`Earn +${lesson.xpReward} XP`}</span>
@@ -91,8 +91,8 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
                                 {/* checks if a challenge is marked complete by the user */}
                                 const isComplete = completedChallenges.includes(String(challenge.id));
                                 return <label key={challenge.id} className={isComplete
-                                    ? `text-lg flex justify-between space-x-3 border-2 p-4 hover:cursor-pointer shadow-md hover:shadow-lg bg-emerald-100 border-emerald-500`
-                                    : `text-lg flex justify-between space-x-3 border-2 p-4 hover:cursor-pointer shadow-md hover:shadow-lg hover:bg-gray-50 hover:border-emerald-600`
+                                    ? `text-xl flex justify-between space-x-3 border-2 p-4 hover:cursor-pointer shadow-md hover:shadow-lg bg-emerald-100 border-emerald-500`
+                                    : `text-xl flex justify-between space-x-3 border-2 p-4 hover:cursor-pointer shadow-md hover:shadow-lg hover:bg-gray-50 hover:border-emerald-600`
                                     }>
                                     <div className="flex justify-start">
                                         <input type="checkbox" name={challenge.challenge}
@@ -104,7 +104,7 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
                                         {/* if the challenge is marked complete, apply styling to that challenge as a visual indicator the challenge is complete */}
                                         <p className={`${isComplete ? "line-through text-stone-400" : ""} pl-2`}>{challenge.challenge}</p>
                                     </div>
-                                    <span className={isComplete ? "line-through text-stone-400" : "text-amber-700"}>{`+${challenge.xpReward} XP`}</span>
+                                    <span className={isComplete ? "line-through text-stone-400" : "text-amber-700 font-semibold"}>{`+${challenge.xpReward} XP`}</span>
                                 </label>
                             })}
                         </form>

@@ -8,7 +8,7 @@ export default function NavBar() {
     return (
         <div className="flex flex-row justify-end">
             <nav>
-                <ul className="flex gap-6 text-[#FFFEF7] text-lg">
+                <ul className="flex gap-6 text-[#FFFEF7] font-['Nunito_Sans'] text-xl">
 
                     <li className={isActive === "Dashboard"
                         ? `relative text-[#D4A574] after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:bg-[#D4A574]`

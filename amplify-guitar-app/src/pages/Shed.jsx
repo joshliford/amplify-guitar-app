@@ -23,12 +23,12 @@ export default function Shed({ addXP }) {
     const isGoalMet = selectedGoal && runTime / 60000 >= selectedGoal.minutes;
 
     return (
-        <main className="mt-8 bg-[#FFFEF7]">
+        <main className="mt-8 bg-[#FFFEF7]  font-['Nunito_Sans']">
             <SectionCard title={"The Shed | Practice Room"} icon={<CassetteTape size={35} className="text-[#1F5D3D] m-2" />}>
                 <div className="p-4 mb-6 bg-gray-100 shadow-lg">
                     <p className="text-lg mb-8">Begin your practice session and start shredding</p>
                     <Field>
-                        <Label className="font-semibold text-xl">Set a Practice Goal</Label>
+                        <Label className="font-semibold font-['Lora'] text-xl">Set a Practice Goal</Label>
                             <div className="">
                                 <Select name="practice-goal" aria-label="Practice Goal" className="hover:cursor-pointer shadow-lg hover:shadow-xl mt-3 w-full bg-[#B87333] text-white p-2 rounded-xl"
                                 onChange={handleGoalChange} defaultValue="">
