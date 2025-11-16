@@ -3,6 +3,7 @@ import { useState } from 'react'
 import SectionCard from '../components/SectionCard'
 import { practiceGoals } from '../components/Data/practiceData'
 import PracticeTimer from '../components/PracticeTimer'
+import { CassetteTape } from 'lucide-react'
 
 export default function Shed({ addXP }) {
 
@@ -22,14 +23,14 @@ export default function Shed({ addXP }) {
     const isGoalMet = selectedGoal && runTime / 60000 >= selectedGoal.minutes;
 
     return (
-        <div className="mt-8">
-            <SectionCard title={"The Shed | Practice Room"}>
+        <main className="mt-8 bg-[#FFFEF7]">
+            <SectionCard title={"The Shed | Practice Room"} icon={<CassetteTape size={35} className="text-[#1F5D3D] m-2" />}>
                 <div className="p-4 mb-6 bg-gray-100 shadow-lg">
                     <p className="text-lg mb-8">Begin your practice session and start shredding</p>
                     <Field>
                         <Label className="font-semibold text-xl">Set a Practice Goal</Label>
                             <div className="">
-                                <Select name="practice-goal" aria-label="Practice Goal" className="hover:cursor-pointer shadow-lg hover:shadow-xl mt-3 w-full bg-white p-2 rounded-xl"
+                                <Select name="practice-goal" aria-label="Practice Goal" className="hover:cursor-pointer shadow-lg hover:shadow-xl mt-3 w-full bg-[#B87333] text-white p-2 rounded-xl"
                                 onChange={handleGoalChange} defaultValue="">
                                     <option value={""}>Choose a Goal...</option>
                                     {practiceGoals.map((goal, index) => {
@@ -45,7 +46,7 @@ export default function Shed({ addXP }) {
                     {selectedGoal &&
                         <button onClick={handleCompleteSession} disabled={!isGoalMet} className={`w-full max-w-2xl shadow-lg hover:shadow-xl px-6 py-2 rounded-xl font-semibold text-white transition
                             ${isGoalMet
-                            ? "bg-green-600 hover:bg-green-700"
+                            ? "bg-[#1F5D3D] hover:bg-[#174b30] hover:cursor-pointer"
                             : "bg-gray-300 cursor-not-allowed"
                     }`}>
                         {`Complete Practice +${selectedGoal.xpReward} XP`}
@@ -54,6 +55,6 @@ export default function Shed({ addXP }) {
                 </div>
 
             </SectionCard>
-        </div>
+        </main>
     )
 }

@@ -48,7 +48,7 @@ export default function PracticeTimer({ runTime, setRunTime }) {
     }
 
     return (
-        <div className="flex flex-col items-center mx-auto bg-slate-200 rounded-xl shadow-lg p-12 space-y-4 m-8 w-full max-w-2xl">
+        <div className="flex flex-col items-center mx-auto bg-[#E8D5C4] rounded-xl shadow-lg p-12 space-y-4 m-8 w-full max-w-2xl">
             <h2 className="font-semibold text-2xl">Practice Timer</h2>
             <p className="text-sm">Track your practice progress</p>
             <div>
@@ -59,12 +59,12 @@ export default function PracticeTimer({ runTime, setRunTime }) {
                 <button onClick={handleTimer}
                     className={
                         `px-6 py-2 rounded-xl font-semibold transition ${
-                        isRunning ? "bg-red-600 hover:bg-red-700 hover:cursor-pointer" : "bg-green-500 hover:bg-green-600 hover:cursor-pointer"
+                        isRunning ? "bg-red-700 hover:bg-red-800 text-white hover:cursor-pointer" : "bg-[#1F5D3D] hover:bg-[#21462f] text-white hover:cursor-pointer"
                     }`}>
                     {isRunning ? "Pause" : "Start"}
                 </button>
                 {/* when clicked resets the timer to 0 per the handleReset function */}
-                <button onClick={handleReset} className="px-6 py-2 rounded-xl font-semibold transition bg-gray-200 hover:bg-gray-300 hover:cursor-pointer">Reset</button>
+                <button onClick={handleReset} className="px-6 py-2 rounded-xl font-semibold transition bg-amber-700 hover:bg-amber-800 text-white hover:cursor-pointer">Reset</button>
             </div>
         </div>
     )

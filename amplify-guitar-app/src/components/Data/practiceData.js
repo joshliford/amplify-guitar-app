@@ -5,7 +5,7 @@ export const practiceGoals =
         goal: "Practice Scales",
         value: "practice-scales",
         xpReward: 50,
-        minutes: 10
+        minutes: 0.25
     },
     {
         id: 2,

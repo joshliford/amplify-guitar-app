@@ -21,6 +21,8 @@ export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, co
 
     // sets the JamRoom filter default to 'all' as the default when you navigate to the page
     const [ filter, setFilter ] = useState('all');
+
+    const [ isActive, setIsActive ] = useState('all');
     
     // recieves an 'item' (i.e. chord/scale/lesson object) from Card
     // stores the 'item' in selectedItem (tells the modal what to display)
@@ -37,15 +39,16 @@ export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, co
     const filterOptions = (value) => {
         // updates filter state to be whatever was clicked (i.e. chords, scales, etc.)
         setFilter(value);
+        setIsActive(value);
     }
 
     return (
-        <main>
+        <main className="bg-[#FFFEF7]">
             <div className="text-lg flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 mb-6">
-                <FilterButton label={"Lessons"} value={"lessons"} filterOptions={filterOptions} />
-                <FilterButton label={"Chords"} value={"chords"} filterOptions={filterOptions} />
-                <FilterButton label={"Scales"} value={"scales"} filterOptions={filterOptions} />
-                <FilterButton label={"All"} value={"all"} filterOptions={filterOptions} />
+                <FilterButton label={"Lessons"} value={"lessons"} filterOptions={filterOptions} isActive={isActive} />
+                <FilterButton label={"Chords"} value={"chords"} filterOptions={filterOptions} isActive={isActive} />
+                <FilterButton label={"Scales"} value={"scales"} filterOptions={filterOptions} isActive={isActive} />
+                <FilterButton label={"All"} value={"all"} filterOptions={filterOptions} isActive={isActive} />
             </div>
 
             {/* filter === 'all' indicates that it will be shown on screen by default unless a different choice is clicked */}
