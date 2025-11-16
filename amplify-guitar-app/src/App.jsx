@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router'
+import { Routes, Route, Navigate } from 'react-router'
 import { useState } from 'react'
 import './index.css'
 import Header from './components/Header'
@@ -9,6 +9,7 @@ import JamRoom from './pages/JamRoom'
 import Shed from './pages/Shed'
 import { calculateLevel, xpProgression, xpNeededToLevelUp } from './components/utils/xpUtils'
 import LevelUpModal from './components/LevelUpModal'
+import Auth from './pages/Auth'
 
 function App() {
 
@@ -61,7 +62,9 @@ function App() {
       <main>
         <Header />
         <Routes>
-          <Route path='/' element={<Home totalXP={totalXP} streak={streak} level={level} currentXP={currentXP} xpNeeded={xpNeeded} addXP={addXP} completedChallenges={completedChallenges} markChallengeComplete={markChallengeComplete} />} />
+          <Route path='/' element={<Navigate to="/auth" replace />} />
+          <Route path='/auth' element={<Auth />} />
+          <Route path='/dashboard' element={<Home totalXP={totalXP} streak={streak} level={level} currentXP={currentXP} xpNeeded={xpNeeded} addXP={addXP} completedChallenges={completedChallenges} markChallengeComplete={markChallengeComplete} />} />
           <Route path='/about' element={<About />} />
           <Route path='/jamroom' element={<JamRoom totalXP={totalXP} level={level} currentXP={currentXP} xpNeeded={xpNeeded} addXP={addXP} completedLessons={completedLessons} markLessonComplete={markLessonComplete} />} />
           <Route path='/shed' element={<Shed totalXP={totalXP} level={level} currentXP={currentXP} xpNeeded={xpNeeded} addXP={addXP} />} />

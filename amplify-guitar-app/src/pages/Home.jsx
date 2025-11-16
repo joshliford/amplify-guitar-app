@@ -32,7 +32,7 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
     return (
             <main className="bg-[#FFFEF7]">
                 <div className="flex flex-col m-6 pb-4 border-2 w-full mx-auto max-w-5xl rounded-xl shadow-lg hover:shadow-xl bg-white">
-                    <div className="border-b-2 p-6">
+                    <div className="border-b-2 border-b-[#1F5D3D] p-6">
                         <div className="mb-4 px-3">
                             <div className="flex justify-between">
                                 <h3 className="text-2xl font-bold mb-4">Welcome Back, Josh!</h3>
@@ -48,7 +48,7 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
                             <p>Level: {level}</p>
                             <div className="flex justify-end items-center">
                                 <Flame size={25} className="fill-orange-500" />
-                                <p className="pl-2">Streak: {streak} days</p>
+                                <p>Streak: {streak} days</p>
                             </div>
                         </div>
                     </div>
@@ -70,17 +70,17 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
                     <div>
                         <ul className="flex flex-col items-start space-y-8 m-4 p-6">
                             {lessons.map((lesson) => {
-                                return <Link to={'/jamroom'} className="text-lg border-2 p-4 w-full shadow-lg hover:shadow-xl hover:bg-gray-50">
+                                return <Link to={'/jamroom'} className="text-lg border-2 p-4 w-full shadow-lg hover:shadow-xl hover:bg-gray-50 hover:text-[#1F5D3D]">
                                     <li key={lesson.id} className="flex justify-between">
                                         <span>{lesson.title}</span>
-                                        <span>{`Earn +${lesson.xpReward} XP`}</span>
+                                        <span className="text-amber-700 font-semibold">{`Earn +${lesson.xpReward} XP`}</span>
                                     </li>
                                     </Link> 
                             })}
                         </ul>
                     </div>
                     <div className="flex justify-center">
-                        <Link to={'/jamroom'}><button className="px-8 py-3 hover:cursor-pointer">GO TO THE JAM ROOM</button></Link>
+                        <Link to={'/jamroom'}><button className="px-8 py-3 bg-[#1F5D3D] hover:bg-[#17472f] rounded-xl shadow-lg text-white hover:cursor-pointer hover:shadow-xl">GO TO THE JAM ROOM</button></Link>
                     </div>
                 </SectionCard>
 
@@ -91,26 +91,26 @@ export default function Home({ totalXP, streak, level, currentXP, xpNeeded, addX
                                 {/* checks if a challenge is marked complete by the user */}
                                 const isComplete = completedChallenges.includes(String(challenge.id));
                                 return <label key={challenge.id} className={isComplete
-                                    ? `text-lg flex justify-between space-x-3 border-2 p-2 hover:cursor-pointer shadow-md hover:shadow-lg bg-[#A8E6B0]`
-                                    : `text-lg flex justify-between space-x-3 border-2 p-2 hover:cursor-pointer shadow-md hover:shadow-lg hover:bg-gray-50`
+                                    ? `text-lg flex justify-between space-x-3 border-2 p-4 hover:cursor-pointer shadow-md hover:shadow-lg bg-emerald-100 border-emerald-500`
+                                    : `text-lg flex justify-between space-x-3 border-2 p-4 hover:cursor-pointer shadow-md hover:shadow-lg hover:bg-gray-50 hover:border-emerald-600`
                                     }>
                                     <div className="flex justify-start">
                                         <input type="checkbox" name={challenge.challenge}
                                             // if the challenge is checked, disabled the checkbox to prevent 'XP farming'
                                             onClick={() => handleCompletedChallenge(challenge.id, challenge.xpReward)}
                                             checked={isComplete} disabled={isComplete}
-                                            >
-                                        </input>
+                                        />
+                                        
                                         {/* if the challenge is marked complete, apply styling to that challenge as a visual indicator the challenge is complete */}
-                                        <p className={`${isComplete ? "line-through" : ""} pl-2`}>{challenge.challenge}</p>
+                                        <p className={`${isComplete ? "line-through text-stone-400" : ""} pl-2`}>{challenge.challenge}</p>
                                     </div>
-                                    <span className={isComplete ? "line-through" : ""}>{`${challenge.xpReward} XP`}</span>
+                                    <span className={isComplete ? "line-through text-stone-400" : "text-amber-700"}>{`+${challenge.xpReward} XP`}</span>
                                 </label>
                             })}
                         </form>
                     </div>
                     <div className="flex justify-center">
-                        <Link to={'/shed'}><button className="px-8 py-3 hover:cursor-pointer">GO TO THE SHED</button></Link>
+                        <Link to={'/shed'}><button className="px-8 py-3 bg-amber-700 hover:bg-amber-800 rounded-xl shadow-lg text-white hover:cursor-pointer hover:shadow-xl">GO TO THE SHED</button></Link>
                     </div>
                 </SectionCard>
             </main>

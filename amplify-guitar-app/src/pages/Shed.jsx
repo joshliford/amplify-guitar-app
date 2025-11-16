@@ -30,7 +30,7 @@ export default function Shed({ addXP }) {
                     <Field>
                         <Label className="font-semibold text-xl">Set a Practice Goal</Label>
                             <div className="">
-                                <Select name="practice-goal" aria-label="Practice Goal" className="hover:cursor-pointer shadow-lg hover:shadow-xl mt-3 w-full bg-white p-2 rounded-xl"
+                                <Select name="practice-goal" aria-label="Practice Goal" className="hover:cursor-pointer shadow-lg hover:shadow-xl mt-3 w-full bg-[#B87333] text-white p-2 rounded-xl"
                                 onChange={handleGoalChange} defaultValue="">
                                     <option value={""}>Choose a Goal...</option>
                                     {practiceGoals.map((goal, index) => {
@@ -46,7 +46,7 @@ export default function Shed({ addXP }) {
                     {selectedGoal &&
                         <button onClick={handleCompleteSession} disabled={!isGoalMet} className={`w-full max-w-2xl shadow-lg hover:shadow-xl px-6 py-2 rounded-xl font-semibold text-white transition
                             ${isGoalMet
-                            ? "bg-green-600 hover:bg-green-700"
+                            ? "bg-[#1F5D3D] hover:bg-[#174b30] hover:cursor-pointer"
                             : "bg-gray-300 cursor-not-allowed"
                     }`}>
                         {`Complete Practice +${selectedGoal.xpReward} XP`}

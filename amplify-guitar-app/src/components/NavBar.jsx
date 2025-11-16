@@ -14,7 +14,7 @@ export default function NavBar() {
                         ? `relative text-[#D4A574] after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:bg-[#D4A574]`
                         : `relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-[#D4A574] after:transition-all after:duration-300 hover:after:w-full`
                     }>
-                        <Link to='/' onClick={() => setIsActive("Dashboard")}>Dashboard</Link></li>
+                        <Link to='/dashboard' onClick={() => setIsActive("Dashboard")}>Dashboard</Link></li>
 
                     <li className={isActive === "Jam Room"
                         ? `relative text-[#D4A574] after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:bg-[#D4A574]`
