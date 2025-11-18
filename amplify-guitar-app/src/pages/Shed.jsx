@@ -8,6 +8,7 @@ import { CassetteTape } from 'lucide-react'
 export default function Shed({ addXP }) {
 
     const [ selectedGoal, setSelectedGoal ] = useState(null);
+    const [ sessionComplete, setSessionComplete ] = useState(false);
     const [ runTime, setRunTime ] = useState(0);
 
     const handleGoalChange = (e) => {
@@ -16,11 +17,15 @@ export default function Shed({ addXP }) {
     }
 
     const handleCompleteSession = () => {
-        if (!selectedGoal) return;
+        if (!isGoalMet ) return;
+
         addXP(selectedGoal.xpReward);
+        setSessionComplete(true);
+        
     }
 
     const isGoalMet = selectedGoal && runTime / 60000 >= selectedGoal.minutes;
+    const canClickButton = isGoalMet && !sessionComplete;
 
     return (
         <main className="mt-8 bg-[#FFFEF7] font-['Nunito_Sans'] px-4">
@@ -44,11 +49,11 @@ export default function Shed({ addXP }) {
                 <div className="flex flex-col justify-center items-center">
                     <PracticeTimer runTime={runTime} setRunTime={setRunTime} />
                     {selectedGoal &&
-                        <button onClick={handleCompleteSession} disabled={!isGoalMet} className={`w-full max-w-2xl shadow-lg hover:shadow-xl px-6 py-2 rounded-xl font-semibold text-white transition
-                            ${isGoalMet
-                            ? "bg-[#1F5D3D] hover:bg-[#174b30] hover:cursor-pointer"
-                            : "bg-gray-300 cursor-not-allowed"
-                    }`}>
+                        <button onClick={handleCompleteSession} disabled={!canClickButton} className={`w-full max-w-2xl shadow-lg hover:shadow-xl px-6 py-2 rounded-xl font-semibold text-white transition
+                            ${canClickButton
+                                ? 'bg-[#1F5D3D] hover:bg-[#174b30] hover:cursor-pointer'
+                                : 'bg-gray-300 cursor-not-allowed'
+                            }`}>
                         {`Complete Practice +${selectedGoal.xpReward} XP`}
                     </button>
                     }
