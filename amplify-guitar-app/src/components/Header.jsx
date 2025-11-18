@@ -8,14 +8,13 @@ export default function Header() {
     if (location.pathname === "/auth") return null;
 
     return (
-        // header container
-        <div className="flex flex-col p-4 border-b-2 bg-[#1F5D3D]">
+        <div className="flex flex-col p-4 border-b-4 border-[#D4A574] bg-[#1F5D3D] shadow-lg">
             <header>
-                {/* links directly to the homepage when the 'Amplify' heading is clicked */}
-                <Link to={'/dashboard'}><h1 className="text-4xl text-[#FFFEF7] font-['Lora'] max-w-xl">Amplify</h1></Link>
+                <Link to={'/dashboard'}><h1 className="text-4xl text-[#FFFEF7] font-['Lora'] hover:text-[#EBD5B3] transition-colors mb-1">
+                    Amplify</h1>
+                </Link>
                 <div className="flex flex-row justify-between">
-                    <h2 className="text-[#FFFEF7] font-['Lora'] text-xl">Gamified Guitar Learning Dashboard</h2>
-                    {/* display the NavBar within the header */}
+                    <h2 className="text-[#EBD5B3] font-['Lora'] text-xl">Gamified Guitar Learning Dashboard</h2>
                     <NavBar />
                 </div>
             </header>

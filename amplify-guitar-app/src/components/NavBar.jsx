@@ -1,38 +1,37 @@
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function NavBar() {
 
-    const [ isActive, setIsActive ] = useState("Dashboard");
+    const location = useLocation();
 
     return (
         <div className="flex flex-row justify-end">
             <nav>
                 <ul className="flex gap-6 text-[#FFFEF7] font-['Nunito_Sans'] text-xl">
 
-                    <li className={isActive === "Dashboard"
-                        ? `relative text-[#D4A574] after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:bg-[#D4A574]`
-                        : `relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-[#D4A574] after:transition-all after:duration-300 hover:after:w-full`
+                    <li className={location.pathname === "/dashboard"
+                        ? `text-[#EBD5B3] border-b-2 border-b-[#EBD5B3]`
+                        : `text-[#FFFEF7] hover:text-[#EBD5B3] transition-colors`
                     }>
-                        <Link to='/dashboard' onClick={() => setIsActive("Dashboard")}>Dashboard</Link></li>
+                        <Link to='/dashboard'>Dashboard</Link></li>
 
-                    <li className={isActive === "Jam Room"
-                        ? `relative text-[#D4A574] after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:bg-[#D4A574]`
-                        : `relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-[#D4A574] after:transition-all after:duration-300 hover:after:w-full`
+                    <li className={location.pathname === "/jamroom"
+                        ? `text-[#EBD5B3] border-b-2 border-b-[#EBD5B3]`
+                        : `text-[#FFFEF7] hover:text-[#EBD5B3] transition-colors`
                     }>
-                        <Link to='/jamroom' onClick={() => setIsActive("Jam Room")}>Jam Room</Link></li>
+                        <Link to='/jamroom'>Jam Room</Link></li>
 
-                    <li className={isActive === "The Shed"
-                        ? `relative text-[#D4A574] after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:bg-[#D4A574]`
-                        : `relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-[#D4A574] after:transition-all after:duration-300 hover:after:w-full`
+                    <li className={location.pathname === "/shed"
+                        ? `text-[#EBD5B3] border-b-2 border-b-[#EBD5B3]`
+                        : `text-[#FFFEF7] hover:text-[#EBD5B3] transition-colors`
                     }>
-                        <Link to='/shed' onClick={() => setIsActive("The Shed")}>The Shed</Link></li>
+                        <Link to='/shed'>The Shed</Link></li>
 
-                    <li className={isActive === "About"
-                        ? `relative text-[#D4A574] after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:bg-[#D4A574]`
-                        : `relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-[#D4A574] after:transition-all after:duration-300 hover:after:w-full`
+                    <li className={location.pathname === "/about"
+                        ? `text-[#EBD5B3] border-b-2 border-b-[#EBD5B3]`
+                        : `text-[#FFFEF7] hover:text-[#EBD5B3] transition-colors`
                     }>
-                        <Link to='/about' onClick={() => setIsActive("About")}>About</Link></li>
+                        <Link to='/about'>About</Link></li>
 
                 </ul>
             </nav>

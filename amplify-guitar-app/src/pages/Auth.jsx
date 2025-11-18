@@ -1,4 +1,4 @@
-import { Field, Label, Input, TabGroup, Tab, TabList, TabPanels, TabPanel, Button } from '@headlessui/react'
+import { Field, Input, TabGroup, Tab, TabList, TabPanels, TabPanel, Button } from '@headlessui/react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router';
 import backgroundImage from '../assets/images/loginbackground.jpg'
@@ -17,20 +17,17 @@ export default function Auth() {
     const handleCloseRegistrationModal = () => setSuccessModalOpen(false);
 
     const handleSignIn = (e) => {
-        // prevents the page from reloading on sign in
         e.preventDefault();
         
         if (!email || !password) {
             return;
         }
 
-        // navigate to the homepage/dashboard when sign in button is clicked
         navigate('/dashboard');
 
     }
 
     const handleRegistration = (e) => {
-        // prevents the page from reloading on sign in
         e.preventDefault();
         
         if (!isRegistrationValid) {
@@ -63,14 +60,16 @@ export default function Auth() {
             <TabGroup className="flex flex-col justify-center items-center rounded-2xl bg-[#FFF8EE]/90 p-10 border-[#3E2723]">
                 <TabList className="flex gap-6">
                     <Tab onClick={() => setIsActive("Login")} className={`
-                    ${isActive === "Login" ? `border rounded-xl p-2 hover:cursor-pointer text-white bg-[#1F5D3D] font-['Nunito_Sans'] text-lg`
-                        : `border rounded-xl p-2 hover:cursor-pointer font-['Nunito_Sans'] text-lg`
+                    ${isActive === "Login"
+                        ? `border-2 border-black rounded-xl p-2 hover:cursor-pointer text-white bg-[#1F5D3D] font-['Nunito_Sans'] text-lg`
+                        : `border-2 border-black rounded-xl p-2 hover:cursor-pointer hover:bg-[#FFF8EE] font-['Nunito_Sans'] text-lg transition-colors`
                     }`}>
                         Login
                     </Tab>
                     <Tab onClick={() => setIsActive("Register")} className={`
-                    ${isActive === "Register" ? `border rounded-xl p-2 hover:cursor-pointer text-white bg-[#1F5D3D] font-['Nunito_Sans'] text-lg`
-                        : `border rounded-xl p-2 hover:cursor-pointer font-['Nunito_Sans'] text-lg`
+                    ${isActive === "Register"
+                        ? `border-2 border-black rounded-xl p-2 hover:cursor-pointer text-white bg-[#1F5D3D] font-['Nunito_Sans'] text-lg`
+                        : `border-2 border-black rounded-xl p-2 hover:cursor-pointer hover:bg-[#FFF8EE] font-['Nunito_Sans'] text-lg transition-colors`
                     }`}>
                         Register
                     </Tab>
@@ -78,58 +77,60 @@ export default function Auth() {
 
                 <TabPanels>
 
-                    {/* panel/container for login form */}
+                    {/* container for login form */}
                     <TabPanel>
-                        <form>
-                            <div className="flex flex-col items-center mt-6 mb-6">
+                        <form className="p-4">
+                            <div className="flex flex-col items-center mt-2 mb-6">
                                 <h1 className="text-xl font-semibold font-['Lora'] mb-4">Have an Account?</h1>
-                                <p className="text-lg text-[#3E2723] font-['Nunito_Sans']">Sign In</p>
+                                <p className="text-lg font-['Nunito_Sans']">Sign In</p>
                             </div>
                             <div>
                                 <Field className="flex flex-col space-y-4 font-['Nunito-Sans']">
                                     <div className="relative">
                                         <Mail size={20} className="absolute left-2 top-3" />
-                                        <Input onChange={e => setEmail(e.target.value)} value={email} name="email" type="email" placeholder="Email" className="border p-2 pl-8 rounded-3xl bg-white/80 border-black font-['Nunito_Sans']" required />
+                                        <Input onChange={e => setEmail(e.target.value)} value={email} name="email" type="email" placeholder="Email" className="border-2 p-2 pl-8 rounded-3xl bg-white/80 border-black font-['Nunito_Sans']" required />
                                     </div>
                                     <div className="relative">
                                         <Lock size={20} className="absolute left-2 top-3" />
-                                        <Input onChange={e => setPassword(e.target.value)} value={password} name="password" type="password" placeholder="Password" className="border p-2 pl-8 rounded-3xl bg-white/80 border-black font-['Nunito_Sans']" required />
+                                        <Input onChange={e => setPassword(e.target.value)} value={password} name="password" type="password" placeholder="Password" className="border-2 p-2 pl-8 rounded-3xl bg-white/80 border-black font-['Nunito_Sans']" required />
                                     </div>
                                 </Field>
                                 <Button type="submit" onClick={handleSignIn} disabled={!isLoginValid} className={`
-                                   ${isLoginValid  ? `border rounded-3xl p-2 max-w-3xl w-full text-white bg-[#1F5D3D] cursor-pointer font-['Nunito_Sans']`
-                                    : `border rounded-3xl p-2 max-w-3xl w-full bg-gray-200 cursor-not-allowed font-['Nunito_Sans']`
-                                }`}>
+                                   ${isLoginValid
+                                    ? `border-2 border-black rounded-3xl p-2 max-w-3xl w-full text-white bg-[#1F5D3D] cursor-pointer font-['Nunito_Sans']`
+                                    : `border-2 border-black rounded-3xl p-2 max-w-3xl w-full bg-gray-200 cursor-not-allowed font-['Nunito_Sans']`
+                                    }`}>
                                     Sign In
                                 </Button>
                             </div>
                         </form>
                     </TabPanel>
 
-                    {/* panel/container for register form */}
+                    {/* container for register form */}
                     <TabPanel>
-                        <form>
-                            <div className="flex flex-col items-center mt-12 mb-6">
+                        <form className="p-6">
+                            <div className="flex flex-col items-center mt-2 mb-2">
                                 <h2 className="text-xl font-semibold mb-4 font-['Lora']">Create an Account</h2>
                             </div>
                             <div>
                                 <Field className="flex flex-col space-y-4 font-['Nunito-Sans']">
                                     <div className="relative">
                                         <Mail size={20} className="absolute left-2 top-3" />
-                                        <Input onChange={e => setEmail(e.target.value)} value={email} name="email" type="email" placeholder="Enter Email" className="border p-2 pl-8 rounded-3xl bg-white/80 border-black" required />
+                                        <Input onChange={e => setEmail(e.target.value)} value={email} name="email" type="email" placeholder="Enter Email" className="border-2 p-2 pl-8 rounded-3xl bg-white/80 border-black" required />
                                     </div>
                                     <div className="relative">
                                         <Lock size={20} className="absolute left-2 top-3" />
-                                        <Input onChange={e => setPassword(e.target.value)} value={password} name="password" type="password" placeholder="Enter Password" className="border p-2 pl-8 rounded-3xl bg-white/80 border-black" required />
+                                        <Input onChange={e => setPassword(e.target.value)} value={password} name="password" type="password" placeholder="Enter Password" className="border-2 p-2 pl-8 rounded-3xl bg-white/80 border-black" required />
                                     </div>
                                     <div className="relative">
                                         <Lock size={20} className="absolute left-2 top-3" />
-                                        <Input onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} name="confirmPassword" type="password" placeholder="Confirm Password" className="border p-2 pl-8 rounded-3xl bg-white/80 border-black" required />
+                                        <Input onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} name="confirmPassword" type="password" placeholder="Confirm Password" className="border-2 p-2 pl-8 rounded-3xl bg-white/80 border-black" required />
                                     </div>
                                     <Button type="submit" onClick={handleRegistration} disabled={!isRegistrationValid} className={`
-                                        ${isRegistrationValid  ? `border rounded-3xl p-2 max-w-3xl w-full text-white bg-amber-700 cursor-pointer`
-                                        : `border rounded-3xl p-2 max-w-3xl w-full bg-gray-200 cursor-not-allowed`
-                                    }`}>
+                                        ${isRegistrationValid
+                                            ? `border-2 border-black rounded-3xl p-2 max-w-3xl w-full text-white text-lg bg-amber-700 cursor-pointer`
+                                            : `border-2 border-black rounded-3xl p-2 max-w-3xl w-full text-lg bg-gray-200 cursor-not-allowed`
+                                        }`}>
                                         Register
                                     </Button>
                                 </Field>

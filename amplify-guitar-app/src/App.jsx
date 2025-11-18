@@ -13,9 +13,9 @@ import Auth from './pages/Auth'
 
 function App() {
 
-  const [ totalXP, setTotalXP ] = useState(900); // initialize totalXP to have an initial value of 2250
-  const [ streak, setStreak ] = useState(5); // initialize streak to have an initial value of 5 days
-  const [ completedLessons, setCompletedLessons ] = useState([]); // state to store an array of completed lessons for the user; prevents 'infinite XP farming'
+  const [ totalXP, setTotalXP ] = useState(900);
+  const [ streak, setStreak ] = useState(5);
+  const [ completedLessons, setCompletedLessons ] = useState([]);
   const [ completedChallenges, setCompletedChallenges ] = useState([]);
   const [ levelUpModalOpen, setLevelUpModalOpen ] = useState(false);
 
@@ -45,22 +45,20 @@ function App() {
   // takes in a lesson Id; prev = completedLessons at that moment
   function markLessonComplete(lessonId) {
     setCompletedLessons(prev => {
-      const id = String(lessonId); // id is converted to a string to prevent potential type mismatch
-        return prev.includes(id) ? prev : [...prev, id]; // if the id is already in the array, do nothing, otherwise append the id to the array
+      return prev.includes(lessonId) ? prev : [...prev, lessonId];
     })
   }
 
   function markChallengeComplete(challengeId) {
     setCompletedChallenges(prev => {
-      const id = String(challengeId);
-        return prev.includes(id) ? prev : [...prev, id];
+      return prev.includes(challengeId) ? prev : [...prev, challengeId];
     })
   }
 
   return (
-    <div>
-      <main>
-        <Header />
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="grow">
         <Routes>
           <Route path='/' element={<Navigate to="/auth" replace />} />
           <Route path='/auth' element={<Auth />} />
@@ -70,8 +68,8 @@ function App() {
           <Route path='/shed' element={<Shed totalXP={totalXP} level={level} currentXP={currentXP} xpNeeded={xpNeeded} addXP={addXP} />} />
         </Routes>
         <LevelUpModal isModalOpen={levelUpModalOpen} handleCloseModal={handleCloseLevelUpModal} level={level} />
-        <Footer />
       </main>
+      <Footer />
     </div>
   )
 }
