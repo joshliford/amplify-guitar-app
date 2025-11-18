@@ -12,6 +12,8 @@ export default function Auth() {
     const [ password, setPassword ] = useState("");
     const [ confirmPassword, setConfirmPassword ] = useState("");
     const [ successModalOpen, setSuccessModalOpen ] = useState(false);
+    const [ loginError, setLoginError ] = useState("");
+    const [ registrationError, setRegistrationError ] = useState("");
 
     const navigate = useNavigate();
     const handleCloseRegistrationModal = () => setSuccessModalOpen(false);
@@ -19,10 +21,12 @@ export default function Auth() {
     const handleSignIn = (e) => {
         e.preventDefault();
         
-        if (!email || !password) {
+        if (!isLoginValid) {
+            setLoginError("Invalid Email or Password");
             return;
         }
 
+        setLoginError("");
         navigate('/dashboard');
 
     }
@@ -31,9 +35,11 @@ export default function Auth() {
         e.preventDefault();
         
         if (!isRegistrationValid) {
+            setRegistrationError("Invalid Email or Password");
             return;
         }
 
+        setRegistrationError("");
         setSuccessModalOpen(true);
         setEmail("");
         setPassword("");
@@ -95,11 +101,10 @@ export default function Auth() {
                                         <Input onChange={e => setPassword(e.target.value)} value={password} name="password" type="password" placeholder="Password" className="border-2 p-2 pl-8 rounded-3xl bg-white/80 border-black font-['Nunito_Sans']" required />
                                     </div>
                                 </Field>
-                                <Button type="submit" onClick={handleSignIn} disabled={!isLoginValid} className={`
-                                   ${isLoginValid
-                                    ? `border-2 border-black rounded-3xl p-2 max-w-3xl w-full text-white bg-[#1F5D3D] cursor-pointer font-['Nunito_Sans']`
-                                    : `border-2 border-black rounded-3xl p-2 max-w-3xl w-full bg-gray-200 cursor-not-allowed font-['Nunito_Sans']`
-                                    }`}>
+                                {loginError && (
+                                    <p className="text-red-500 font-semibold text-center mb-2 font-['Nunito_Sans']">{loginError}</p>
+                                )}
+                                <Button type="submit" onClick={handleSignIn} className="border-2 border-black rounded-3xl p-2 max-w-3xl w-full text-lg text-white bg-[#1F5D3D] hover:bg-[#1F5D3D]/90 cursor-pointer font-['Nunito_Sans']">
                                     Sign In
                                 </Button>
                             </div>
@@ -126,11 +131,10 @@ export default function Auth() {
                                         <Lock size={20} className="absolute left-2 top-3" />
                                         <Input onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} name="confirmPassword" type="password" placeholder="Confirm Password" className="border-2 p-2 pl-8 rounded-3xl bg-white/80 border-black" required />
                                     </div>
-                                    <Button type="submit" onClick={handleRegistration} disabled={!isRegistrationValid} className={`
-                                        ${isRegistrationValid
-                                            ? `border-2 border-black rounded-3xl p-2 max-w-3xl w-full text-white text-lg bg-amber-700 cursor-pointer`
-                                            : `border-2 border-black rounded-3xl p-2 max-w-3xl w-full text-lg bg-gray-200 cursor-not-allowed`
-                                        }`}>
+                                    {registrationError && (
+                                        <p className="text-red-500 font-semibold text-center mb-2 font-['Nunito_Sans']">{registrationError}</p>
+                                    )}
+                                    <Button type="submit" onClick={handleRegistration} className="border-2 border-black rounded-3xl p-2 max-w-3xl w-full text-white text-lg bg-[#1F5D3D] hover:bg-[#1F5D3D]/90 cursor-pointer">
                                         Register
                                     </Button>
                                 </Field>
