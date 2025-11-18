@@ -1,28 +1,24 @@
-import { Description, DialogTitle, Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import { Description, Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { ChevronDown } from 'lucide-react'
 
 export default function ChordModal({ selectedItem, handleCloseModal }) {
 
     return (
-        <div>
-            <div className="border-b border-gray-300 w-full max-w-[95%] mx-auto">
-                {/* dynamically render the title of the chord that is currently being viewed */}
-                <DialogTitle className="text-center font-bold mb-2">{selectedItem.title}</DialogTitle>
-            </div>
+        <div className="font-['Nunito_Sans'] text-lg">
             <div className="w-full max-w-[95%] mx-auto">
-                {/* dynamically render description of the chord being viewed */}
                 <Description className="text-center mt-2 mb-4">{selectedItem.details}</Description>
             </div>
             <img src={selectedItem.image} alt={selectedItem.title} className="mt-6 mb-6 w-full max-w-[95%] mx-auto h-auto rounded-xl shadow-lg" />
-                <Disclosure as="div" className="p-6 w-full max-w-[95%] mx-auto border-2 rounded-xl mb-4 hover:shadow-xl hover:bg-gray-200/60 bg-gray-100 shadow-lg shadow-black/20">
-                    <DisclosureButton className="flex w-full items-center justify-between">
-                        <span className="font-medium">
+
+            <div className="border-t-2 border-b-2 border-[#D4A574]">
+                <Disclosure as="div" className="p-6 w-full max-w-[95%] mx-auto border-3 border-black rounded-xl mt-4 mb-4 shadow-lg hover:shadow-xl bg-[#1F5D3D] hover:bg-[#1F5D3D]/95 text-white">
+                    <DisclosureButton className="flex w-full items-center justify-between hover:cursor-pointer">
+                        <p>
                             Tips
-                        </span>
-                        <ChevronDown className="hover:cursor-pointer hover:text-gray-600" />
+                        </p>
+                        <ChevronDown className="hover:cursor-pointer" />
                     </DisclosureButton>
-                    <DisclosurePanel className="text-gray-600">
-                        {/* if the chord has tips display them via an ordered list */}
+                    <DisclosurePanel className="text-white">
                         {selectedItem.tips &&
                             <ol className="list-decimal px-4 mt-2 space-y-2">
                                 {selectedItem.tips.map((tip, index) => {
@@ -32,11 +28,11 @@ export default function ChordModal({ selectedItem, handleCloseModal }) {
                         }
                     </DisclosurePanel>
                 </Disclosure>
+            </div>
             
-            {/* if the chord has fingerPosition, display them via an unordered list */}
             {selectedItem.fingerPositions &&
-            <div className="max-w-[95%] mx-auto border-t border-gray-300">
-                <p className="font-semibold text-center mb-4 mt-4 w-full">Finger Positions (top to bottom):</p>
+            <div>
+                <p className="font-semibold text-center text-xl mb-4 mt-4 w-full">Finger Positions (top to bottom):</p>
                 <ul>
                     {selectedItem.fingerPositions.map((position) => {
                         let posStatus; 
@@ -50,7 +46,7 @@ export default function ChordModal({ selectedItem, handleCloseModal }) {
                         }
                         
                         return ( 
-                            <li key={position.string}>
+                            <li key={position.string} className="text-lg">
                                 {`${position.string}: ${posStatus}`}
                             </li> )
                     })}
@@ -58,7 +54,9 @@ export default function ChordModal({ selectedItem, handleCloseModal }) {
             </div>
             }
             <div className="mt-8">
-                <button className="cursor-pointer hover:cursor-pointer hover:bg-gray-100 border-2 rounded-lg p-2" onClick={() => handleCloseModal()}>Close</button>
+                <button onClick={() => handleCloseModal()} className="hover:cursor-pointer bg-amber-700 hover:bg-amber-800 text-white border-2 border-black rounded-lg p-2 transition">
+                    Close
+                </button>
             </div>
         </div>
     )

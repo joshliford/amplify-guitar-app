@@ -1,0 +1,12 @@
+// config to import path aliases (create shortcuts for imports)
+{
+  "compilerOptions": {
+    // start from project root
+    "baseUrl": ".",
+    "paths": {
+      // @ maps to src/ folder
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src"]
+}

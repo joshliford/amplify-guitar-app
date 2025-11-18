@@ -15,13 +15,9 @@ export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, co
 
     // entire object (chord, scale, or lesson) currently being viewed
     const [ selectedItem, setSelectedItem ] = useState(null);
-    
-    // open or close the modal
     const [ isModalOpen, setIsModalOpen ] = useState(false);
-
     // sets the JamRoom filter default to 'all' as the default when you navigate to the page
     const [ filter, setFilter ] = useState('all');
-
     const [ isActive, setIsActive ] = useState('all');
     
     // recieves an 'item' (i.e. chord/scale/lesson object) from Card
@@ -32,10 +28,8 @@ export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, co
         setIsModalOpen(true);
     }
 
-    // close the modal when called
     const handleCloseModal = () => setIsModalOpen(false);
 
-    // called when the FilterButton is clicked
     const filterOptions = (value) => {
         // updates filter state to be whatever was clicked (i.e. chords, scales, etc.)
         setFilter(value);
@@ -43,12 +37,12 @@ export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, co
     }
 
     return (
-        <main className="bg-[#FFFEF7]">
+        <main className="bg-[#FFFEF7] font-['Nunito_Sans']">
             <div className="text-lg flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 mb-6">
-                <FilterButton label={"Lessons"} value={"lessons"} filterOptions={filterOptions} isActive={isActive} />
-                <FilterButton label={"Chords"} value={"chords"} filterOptions={filterOptions} isActive={isActive} />
-                <FilterButton label={"Scales"} value={"scales"} filterOptions={filterOptions} isActive={isActive} />
                 <FilterButton label={"All"} value={"all"} filterOptions={filterOptions} isActive={isActive} />
+                <FilterButton label={"Chords"} value={"chords"} filterOptions={filterOptions} isActive={isActive} />
+                <FilterButton label={"Lessons"} value={"lessons"} filterOptions={filterOptions} isActive={isActive} />
+                <FilterButton label={"Scales"} value={"scales"} filterOptions={filterOptions} isActive={isActive} />
             </div>
 
             {/* filter === 'all' indicates that it will be shown on screen by default unless a different choice is clicked */}
@@ -72,13 +66,15 @@ export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, co
                 }
             </div>
 
-            {/* conditionally render the specific modal (i.e. chord, scale) based on the 'category' key/value from the corresponding object */}
-            <Modal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}>
-                {/* if the selectedItem is 'chord', render the ChordModal component */}
+            {/* 
+                - conditionally render the specific modal (i.e. chord, scale) based on the 'category' key/value from the corresponding object
+                - used optional chaining (?.) to prevent browser crashes (i.e. if selectedItem is 'null' return undefined rather than crashing the app)
+                - helps render the conditional woodgrain header for each modal in Jamroom
+            */}
+            <Modal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal} category={selectedItem?.category} title={selectedItem?.title}>
                 {selectedItem && selectedItem.category === "chord" &&
                     <ChordModal selectedItem={selectedItem} handleCloseModal={handleCloseModal} />
                 }
-                {/* if the selectedItem is 'scale', render the ScaleModal component */}
                 {selectedItem && selectedItem.category === "scale" &&
                     <ScaleModal selectedItem={selectedItem} handleCloseModal={handleCloseModal} />
                 }

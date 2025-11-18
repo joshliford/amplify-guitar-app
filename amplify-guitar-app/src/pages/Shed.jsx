@@ -18,19 +18,19 @@ export default function Shed({ addXP }) {
     const handleCompleteSession = () => {
         if (!selectedGoal) return;
         addXP(selectedGoal.xpReward);
-    }   
+    }
 
     const isGoalMet = selectedGoal && runTime / 60000 >= selectedGoal.minutes;
 
     return (
-        <main className="mt-8 bg-[#FFFEF7]">
-            <SectionCard title={"The Shed | Practice Room"} icon={<CassetteTape size={35} className="text-[#1F5D3D] m-2" />}>
-                <div className="p-4 mb-6 bg-gray-100 shadow-lg">
+        <main className="mt-8 bg-[#FFFEF7] font-['Nunito_Sans'] px-4">
+            <SectionCard title={"The Shed | Practice Room"} icon={<CassetteTape size={35} className="text-[#FFFEF7] m-2" />}>
+                <div className="p-4 mb-6 bg-[#1F5D3D]/20 rounded-xl shadow-lg">
                     <p className="text-lg mb-8">Begin your practice session and start shredding</p>
                     <Field>
-                        <Label className="font-semibold text-xl">Set a Practice Goal</Label>
+                        <Label className="font-semibold font-['Lora'] text-xl">Set a Practice Goal</Label>
                             <div className="">
-                                <Select name="practice-goal" aria-label="Practice Goal" className="hover:cursor-pointer shadow-lg hover:shadow-xl mt-3 w-full bg-[#B87333] text-white p-2 rounded-xl"
+                                <Select name="practice-goal" className="hover:cursor-pointer shadow-lg hover:shadow-xl mt-3 w-full bg-amber-700 hover:bg-amber-800 text-white p-2 rounded-xl border-2 border-black"
                                 onChange={handleGoalChange} defaultValue="">
                                     <option value={""}>Choose a Goal...</option>
                                     {practiceGoals.map((goal, index) => {
