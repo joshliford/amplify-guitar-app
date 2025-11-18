@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router'
+import { Routes, Route, Navigate, useNavigate } from 'react-router'
 import { useState } from 'react'
 import './index.css'
 import Header from './components/Header'
@@ -19,12 +19,18 @@ function App() {
   const [ completedChallenges, setCompletedChallenges ] = useState([]);
   const [ levelUpModalOpen, setLevelUpModalOpen ] = useState(false);
 
+  const navigate = useNavigate();
+  
   const level = calculateLevel(totalXP);
   const currentXP = xpProgression(totalXP);
   const xpNeeded = xpNeededToLevelUp(totalXP);
 
   const handleCloseLevelUpModal = () => {
     setLevelUpModalOpen(false);
+  }
+
+  const handleLogout = () => {
+    navigate('/auth');
   }
 
   function addXP(amount) {
@@ -57,7 +63,7 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Header handleLogout={handleLogout} />
       <main className="grow">
         <Routes>
           <Route path='/' element={<Navigate to="/auth" replace />} />
