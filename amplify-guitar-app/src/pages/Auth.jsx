@@ -66,7 +66,14 @@ export default function Auth() {
       <TabGroup className="flex flex-col justify-center items-center rounded-2xl bg-[#FFF8EE]/90 p-10 border-[#3E2723]">
         <TabList className="flex gap-6">
           <Tab
-            onClick={() => setIsActive("Login")}
+            onClick={() => {
+              setIsActive("Login");
+              setEmail("");
+              setPassword("");
+              setConfirmPassword("");
+              setLoginError("");
+              setRegistrationError("");
+            }}
             className={`
                     ${
                       isActive === "Login"
@@ -77,7 +84,14 @@ export default function Auth() {
             Login
           </Tab>
           <Tab
-            onClick={() => setIsActive("Register")}
+            onClick={() => {
+              setIsActive("Register");
+              setEmail("");
+              setPassword("");
+              setConfirmPassword("");
+              setLoginError("");
+              setRegistrationError("");
+            }}
             className={`
                     ${
                       isActive === "Register"
