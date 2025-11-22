@@ -1,90 +1,187 @@
-import { useState } from 'react'
-import ChordCard from "../components/Chords/ChordCard"
-import ScaleCard from "../components/Scales/ScaleCard"
-import { chords } from "../components/Chords/chordData"
-import { scales } from "../components/Scales/scaleData"
-import { lessons } from "../components/Lessons/lessonData"
-import FilterButton from "../components/FilterButton"
-import LessonCard from "../components/Lessons/LessonCard"
-import Modal from "../components/Modal"
-import ChordModal from "../components/Chords/ChordModal"
-import ScaleModal from "../components/Scales/ScaleModal"
-import LessonModal from '../components/Lessons/LessonModal'
+import { useState } from "react";
+import ChordCard from "../components/Chords/ChordCard";
+import ScaleCard from "../components/Scales/ScaleCard";
+import LessonCard from "../components/Lessons/LessonCard";
+import { chords } from "../components/Chords/chordData";
+import { scales } from "../components/Scales/scaleData";
+import { lessons } from "../components/Lessons/lessonData";
+import FilterButton from "../components/FilterButton";
+import Modal from "../components/Modal";
+import ChordModal from "../components/Chords/ChordModal";
+import ScaleModal from "../components/Scales/ScaleModal";
+import LessonModal from "../components/Lessons/LessonModal";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { SquareMenu } from "lucide-react";
 
-export default function JamRoom({ totalXP, level, currentXP, xpNeeded, addXP, completedLessons, markLessonComplete }) {
+export default function JamRoom({ addXP, completedLessons, markLessonComplete }) {
 
-    // entire object (chord, scale, or lesson) currently being viewed
-    const [ selectedItem, setSelectedItem ] = useState(null);
-    const [ isModalOpen, setIsModalOpen ] = useState(false);
-    // sets the JamRoom filter default to 'all' as the default when you navigate to the page
-    const [ filter, setFilter ] = useState('all');
-    const [ isActive, setIsActive ] = useState('all');
-    
-    // recieves an 'item' (i.e. chord/scale/lesson object) from Card
-    // stores the 'item' in selectedItem (tells the modal what to display)
-    // sets isModalOpen to be 'true' so the modal is opened/can be viewed/seen
-    const handleViewItem = (item) => {
-        setSelectedItem(item);
-        setIsModalOpen(true);
-    }
+  // entire object (chord, scale, or lesson) currently being viewed
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filter, setFilter] = useState("all");
+  const [isActive, setIsActive] = useState("all");
 
-    const handleCloseModal = () => setIsModalOpen(false);
+  // recieves an 'item' (i.e. chord/scale/lesson object) from Card
+  // stores the 'item' in selectedItem (tells the modal what to display)
+  // sets isModalOpen to be 'true' so the modal is opened/can be viewed/seen
+  const handleViewItem = (item) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
 
-    const filterOptions = (value) => {
-        // updates filter state to be whatever was clicked (i.e. chords, scales, etc.)
-        setFilter(value);
-        setIsActive(value);
-    }
+  const handleCloseModal = () => setIsModalOpen(false);
 
-    return (
-        <main className="bg-[#FFFEF7] font-['Nunito_Sans']">
-            <div className="text-lg flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 mb-6">
-                <FilterButton label={"All"} value={"all"} filterOptions={filterOptions} isActive={isActive} />
-                <FilterButton label={"Chords"} value={"chords"} filterOptions={filterOptions} isActive={isActive} />
-                <FilterButton label={"Lessons"} value={"lessons"} filterOptions={filterOptions} isActive={isActive} />
-                <FilterButton label={"Scales"} value={"scales"} filterOptions={filterOptions} isActive={isActive} />
-            </div>
+  const filterOptions = (value) => {
+    // updates filter state to be whatever was clicked (i.e. chords, scales, etc.)
+    setFilter(value);
+    setIsActive(value);
+  };
 
-            {/* filter === 'all' indicates that it will be shown on screen by default unless a different choice is clicked */}
-            <div className="text-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
-                {(filter === 'all' || filter === 'chords') &&
-                    chords.map((chord) => {
-                        // chord={chord} - passes the entire 'chord' object (i.e. id, title, etc) from the .map() callback into ChordCard as a prop named 'chord'
-                        // 'chord' is then available via deconstruction in ChordCard
-                        return <ChordCard key={chord.id} chord={chord} handleViewItem={handleViewItem} />
-                    })
-                }
-                {(filter === 'all' || filter === 'scales') &&
-                    scales.map((scale) => {
-                        return <ScaleCard key={scale.id} scale={scale} handleViewItem={handleViewItem} />
-                    })
-                }
-                {(filter === 'all' || filter === 'lessons') &&
-                    lessons.map((lesson) => {
-                        return <LessonCard key={lesson.id} lesson={lesson} handleViewItem={handleViewItem} completedLessons={completedLessons} />
-                })
-                }
-            </div>
+  return (
+    <main className="bg-[#FFFEF7] dark:bg-black font-['Nunito_Sans']">
 
-            {/* 
-                - conditionally render the specific modal (i.e. chord, scale) based on the 'category' key/value from the corresponding object
-                - used optional chaining (?.) to prevent browser crashes (i.e. if selectedItem is 'null' return undefined rather than crashing the app)
-                - helps render the conditional woodgrain header for each modal in Jamroom
-            */}
-            <Modal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal} category={selectedItem?.category} title={selectedItem?.title}>
-                {selectedItem && selectedItem.category === "chord" &&
-                    <ChordModal selectedItem={selectedItem} handleCloseModal={handleCloseModal} />
-                }
-                {selectedItem && selectedItem.category === "scale" &&
-                    <ScaleModal selectedItem={selectedItem} handleCloseModal={handleCloseModal} />
-                }
+      {/* burger menu visible only below sm breakpoint for mobile view */}
+      <div className="sm:hidden mb-6">
+        <Menu as="div" className="flex justify-center mt-8">
+          <MenuButton className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1F5D3D] dark:bg-[#e5c391] dark:hover:bg-[#D4A574] dark:text-black text-white hover:cursor-pointer">
+            <SquareMenu size={18} />
+          </MenuButton>
 
-                {/* lessons carry the bulk of XP gain/content so they need to take in additional props to properly update state and XP dynamically */}
-                {selectedItem && selectedItem.category === "lesson" &&
-                    <LessonModal selectedItem={selectedItem} handleCloseModal={handleCloseModal} addXP={addXP} completedLessons={completedLessons} markLessonComplete={markLessonComplete} />
-                }
-            </Modal>
+          <MenuItems className="absolute mt-10 w-40 left-1/2 -translate-x-1/2 rounded-lg bg-white dark:bg-slate-700 shadow-lg">
+            <MenuItem>
+              <button
+                onClick={() => filterOptions("all")}
+                className="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-slate-800 hover:cursor-pointer"
+              >
+                All
+              </button>
+            </MenuItem>
+            <MenuItem>
+              <button
+                onClick={() => filterOptions("chords")}
+                className="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-slate-800 hover:cursor-pointer"
+              >
+                Chords
+              </button>
+            </MenuItem>
+            <MenuItem>
+              <button
+                onClick={() => filterOptions("lessons")}
+                className="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-slate-800 hover:cursor-pointer"
+              >
+                Lessons
+              </button>
+            </MenuItem>
+            <MenuItem>
+              <button
+                onClick={() => filterOptions("scales")}
+                className="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-slate-800 hover:cursor-pointer"
+              >
+                Scales
+              </button>
+            </MenuItem>
+          </MenuItems>
+        </Menu>
+      </div>
 
-        </main>
-    )
+      <div className="max-sm:hidden sm:flex flex-row text-lg justify-center gap-3 mb-8 mt-8">
+        <FilterButton
+          label={"All"}
+          value={"all"}
+          filterOptions={filterOptions}
+          isActive={isActive}
+        />
+        <FilterButton
+          label={"Chords"}
+          value={"chords"}
+          filterOptions={filterOptions}
+          isActive={isActive}
+        />
+        <FilterButton
+          label={"Lessons"}
+          value={"lessons"}
+          filterOptions={filterOptions}
+          isActive={isActive}
+        />
+        <FilterButton
+          label={"Scales"}
+          value={"scales"}
+          filterOptions={filterOptions}
+          isActive={isActive}
+        />
+      </div>
+
+      {/* filter === 'all' indicates that it will be shown on screen by default unless a different choice is clicked */}
+      <div className="text-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
+        {(filter === "all" || filter === "chords") &&
+          chords.map((chord) => {
+            // chord={chord} - passes the entire 'chord' object (i.e. id, title, etc) from the .map() callback into ChordCard as a prop named 'chord'
+            // 'chord' is then available via deconstruction in ChordCard
+            return (
+              <ChordCard
+                key={chord.id}
+                chord={chord}
+                handleViewItem={handleViewItem}
+              />
+            );
+          })}
+        {(filter === "all" || filter === "scales") &&
+          scales.map((scale) => {
+            return (
+              <ScaleCard
+                key={scale.id}
+                scale={scale}
+                handleViewItem={handleViewItem}
+              />
+            );
+          })}
+        {(filter === "all" || filter === "lessons") &&
+          lessons.map((lesson) => {
+            return (
+              <LessonCard
+                key={lesson.id}
+                lesson={lesson}
+                handleViewItem={handleViewItem}
+                completedLessons={completedLessons}
+              />
+            );
+          })}
+      </div>
+
+        {/* 
+        - used optional chaining (?.) to prevent browser crashes (i.e. if selectedItem is 'null' return undefined rather than crashing the app)
+        - helps render the conditional woodgrain header for each modal in Jamroom
+        */}
+      <Modal
+        isModalOpen={isModalOpen}
+        handleCloseModal={handleCloseModal}
+        category={selectedItem?.category}
+        title={selectedItem?.title}
+      >
+        {selectedItem && selectedItem.category === "chord" && (
+          <ChordModal
+            selectedItem={selectedItem}
+            handleCloseModal={handleCloseModal}
+          />
+        )}
+        {selectedItem && selectedItem.category === "scale" && (
+          <ScaleModal
+            selectedItem={selectedItem}
+            handleCloseModal={handleCloseModal}
+          />
+        )}
+
+        {/* lessons carry the bulk of XP gain/content so they need to take in additional props to properly update state and XP dynamically */}
+        {selectedItem && selectedItem.category === "lesson" && (
+          <LessonModal
+            selectedItem={selectedItem}
+            handleCloseModal={handleCloseModal}
+            addXP={addXP}
+            completedLessons={completedLessons}
+            markLessonComplete={markLessonComplete}
+          />
+        )}
+      </Modal>
+    </main>
+  );
 }
