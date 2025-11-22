@@ -48,6 +48,7 @@ function App() {
 
   const handleLogout = () => {
     navigate("/auth");
+    setIsDark(false);
   };
 
   function addXP(amount) {
