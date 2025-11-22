@@ -104,6 +104,7 @@ export default function Auth() {
                   <div className="relative">
                     <Mail size={20} className="absolute left-2 top-3" />
                     <Input
+                      id="login-email"
                       onChange={(e) => setEmail(e.target.value)}
                       value={email}
                       name="email"
@@ -116,6 +117,7 @@ export default function Auth() {
                   <div className="relative">
                     <Lock size={20} className="absolute left-2 top-3" />
                     <Input
+                      id="login-password"
                       onChange={(e) => setPassword(e.target.value)}
                       value={password}
                       name="password"
@@ -155,6 +157,7 @@ export default function Auth() {
                   <div className="relative">
                     <Mail size={20} className="absolute left-2 top-3" />
                     <Input
+                      id="register-email"
                       onChange={(e) => setEmail(e.target.value)}
                       value={email}
                       name="email"
@@ -167,6 +170,7 @@ export default function Auth() {
                   <div className="relative">
                     <Lock size={20} className="absolute left-2 top-3" />
                     <Input
+                      id="register-password"
                       onChange={(e) => setPassword(e.target.value)}
                       value={password}
                       name="password"
@@ -179,6 +183,7 @@ export default function Auth() {
                   <div className="relative">
                     <Lock size={20} className="absolute left-2 top-3" />
                     <Input
+                      id="register-confirm-password"
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       value={confirmPassword}
                       name="confirmPassword"
