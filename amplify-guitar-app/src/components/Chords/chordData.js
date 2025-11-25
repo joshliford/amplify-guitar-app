@@ -1,7 +1,7 @@
 import gMajorImg from "../../assets/images/Gmajor.png";
 import fMajorImg from "../../assets/images/Fmajor.png";
 import eMinorImg from "../../assets/images/Eminor.png";
-import dMajorImg from "../../assets/images/DMajor.png";
+import dMajorImg from "../../assets/images/Dmajor.png";
 import cMajorImg from "../../assets/images/Cmajor.png";
 import aMajorImg from "../../assets/images/Amajor.png";
 
