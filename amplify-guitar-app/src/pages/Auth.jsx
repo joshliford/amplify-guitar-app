@@ -14,11 +14,17 @@ export default function Auth() {
   const [successModalOpen, setSuccessModalOpen] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [registrationError, setRegistrationError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
   const handleCloseRegistrationModal = () => setSuccessModalOpen(false);
 
-  const handleSignIn = (e) => {
+  const delay = async (ms) => {
+    return new Promise((resolve) => 
+      setTimeout(resolve, ms));
+  }
+
+  const handleSignIn = async (e) => {
     e.preventDefault();
 
     if (!isLoginValid) {
@@ -26,7 +32,9 @@ export default function Auth() {
       return;
     }
 
+    setIsLoading(true);
     setLoginError("");
+    await delay(1500);
     navigate("/dashboard");
   };
 
@@ -57,6 +65,15 @@ export default function Auth() {
       className="flex flex-col justify-center items-center bg-cover w-full min-h-screen"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
+      <div className="flex flex-col max-w-1/2 justify-center items-center bg-[#1F5D3D]/80 text-white mb-4 p-6 rounded-xl">
+        <p>
+          Note: For early development, please use the following to login as a mock user
+        </p>
+        <ul className="list-disc">
+          <li>Email: fretboardwizard@email.com</li>
+          <li>Password: p@ssword</li>
+        </ul>
+      </div>
       <div className="flex flex-col justify-center items-center mb-4 bg-[#1F5D3D]/80 p-4 rounded-xl text-white">
         <h1 className="text-4xl font-['Lora']">Amplify</h1>
         <p className="font-['Lora'] text-lg">
@@ -150,9 +167,10 @@ export default function Auth() {
                 <Button
                   type="submit"
                   onClick={handleSignIn}
-                  className="border-2 border-black rounded-3xl p-2 max-w-3xl w-full text-lg text-white bg-[#1F5D3D] hover:bg-[#1F5D3D]/90 cursor-pointer font-['Nunito_Sans']"
+                  disabled={isLoading}
+                  className={isLoading ? `disabled cursor-not-allowed border-2 border-black rounded-3xl p-2 max-w-3xl w-full text-lg bg-gray-300 font-['Nunito_Sans']` : `border-2 border-black rounded-3xl p-2 max-w-3xl w-full text-lg text-white bg-[#1F5D3D] hover:bg-[#1F5D3D]/90 cursor-pointer font-['Nunito_Sans']`}
                 >
-                  Sign In
+                  {isLoading ? "Signing in..." : "Sign In"}
                 </Button>
               </div>
             </form>
