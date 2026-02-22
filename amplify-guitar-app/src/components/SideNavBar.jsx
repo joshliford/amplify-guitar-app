@@ -7,6 +7,9 @@ import DarkModeToggle from "./DarkModeToggle";
 export default function SideNavBar({ handleLogout, isDark, toggleDarkMode }) {
   const location = useLocation();
 
+  // hide nav bar when on the auth page
+  if (location.pathname === "/auth") return null;
+
   return (
     <div className="flex flex-col min-h-screen w-[175px] bg-gray-100 dark:bg-gray-700 border-r-2 border-[#e2e8f0] dark:border-[#149eca]/20">
       <nav>
