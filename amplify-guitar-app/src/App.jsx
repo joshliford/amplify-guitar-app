@@ -10,6 +10,7 @@ import Shed from "./pages/Shed";
 import { calculateLevel, xpProgression, xpNeededToLevelUp } from "./components/utils/xpUtils";
 import LevelUpModal from "./components/LevelUpModal";
 import Auth from "./pages/Auth";
+import SideNavBar from "./components/SideNavBar";
 
 function App() {
   
@@ -79,9 +80,11 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header handleLogout={handleLogout} toggleDarkMode={toggleDarkMode} />
-      <main className="grow">
+    <div className="grid-cols-1">
+      <Header />
+      <main className="flex grow">
+        <SideNavBar handleLogout={handleLogout} toggleDarkMode={toggleDarkMode}/>
+        <div className="flex-1">
         <Routes>
           <Route path="/" element={<Navigate to="/auth" replace />} />
           <Route path="/auth" element={<Auth />} />
@@ -133,6 +136,7 @@ function App() {
           handleCloseModal={handleCloseLevelUpModal}
           level={level}
         />
+        </div>
       </main>
       <Footer />
     </div>
