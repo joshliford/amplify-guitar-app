@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useNavigate } from "react-router";
+import { Routes, Route, Navigate, useNavigate, useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import "./index.css";
 import Header from "./components/Header";
@@ -9,7 +9,7 @@ import JamRoom from "./pages/JamRoom";
 import Shed from "./pages/Shed";
 import { calculateLevel, xpProgression, xpNeededToLevelUp } from "./components/utils/xpUtils";
 import LevelUpModal from "./components/LevelUpModal";
-import Auth from "./pages/Auth";
+import Login from "./pages/Login";
 import SideNavBar from "./components/SideNavBar";
 
 function App() {
@@ -38,6 +38,8 @@ function App() {
   }, [isDark]);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const isAuthPage = ["/login", "/register"].includes(location.pathname);
 
   const level = calculateLevel(totalXP);
   const currentXP = xpProgression(totalXP);
@@ -48,7 +50,7 @@ function App() {
   };
 
   const handleLogout = () => {
-    navigate("/auth");
+    navigate("/login");
     setIsDark(false);
   };
 
@@ -80,14 +82,14 @@ function App() {
   }
 
   return (
-    <div className="grid-cols-1">
-      <Header />
-      <main className="flex grow">
-        <SideNavBar handleLogout={handleLogout} toggleDarkMode={toggleDarkMode}/>
-        <div className="flex-1">
+    <div className={isAuthPage ? "w-full min-h-screen" : "flex flex-col min-h-screen"}>
+      {!isAuthPage && <Header />}
+      <main className={isAuthPage ? "w-full" : "flex flex-1 ml-[175px]"}>
+        {!isAuthPage && <SideNavBar handleLogout={handleLogout} toggleDarkMode={toggleDarkMode}/>}
+        <div className={isAuthPage ? "w-full" : "flex-1"}>
         <Routes>
-          <Route path="/" element={<Navigate to="/auth" replace />} />
-          <Route path="/auth" element={<Auth />} />
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/login" element={<Login />} />
           <Route
             path="/dashboard"
             element={
@@ -131,14 +133,16 @@ function App() {
             }
           />
         </Routes>
-        <LevelUpModal
-          isModalOpen={levelUpModalOpen}
-          handleCloseModal={handleCloseLevelUpModal}
-          level={level}
-        />
+        {!isAuthPage && (
+          <LevelUpModal
+            isModalOpen={levelUpModalOpen}
+            handleCloseModal={handleCloseLevelUpModal}
+            level={level}
+          />
+        )}
         </div>
       </main>
-      <Footer />
+      {!isAuthPage && <Footer />}
     </div>
   );
 }
