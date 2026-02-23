@@ -100,7 +100,7 @@ export default function Login() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="*****"
+                placeholder="••••••••"
                 className="border border-stone-300 rounded-lg px-4 py-2.5 text-sm font-['Nunito_Sans'] focus:outline-none focus:ring-2 focus:ring-[#415a77] bg-white"
               />
             </div>
