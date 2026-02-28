@@ -6,6 +6,7 @@ import RegistrationSuccessful from "../components/RegistrationSuccessful";
 export default function Register() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -25,9 +26,12 @@ export default function Register() {
 
     setRegistrationError("");
     setSuccessModalOpen(true);
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
+    setFirstName(firstName);
+    setLastName(lastName);
+    setEmail(email);
+    setPassword(password);
+    setConfirmPassword(confirmPassword);
+    navigate("/dashboard");
   };
 
   const passwordsMatch = password === confirmPassword;
@@ -39,7 +43,7 @@ export default function Register() {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center py-[10vh] bg-[#0a1628]">
-      <div className="relative z-10 w-full max-w-md rounded-3xl border border-white/10 px-11 py-10 bg-white/6">
+      <div className="relative z-10 w-full max-w-md rounded-3xl border border-white/10 px-11 py-10 bg-white/6 shadow-2xl shadow-[#149eca]/50 transition-all hover:-translate-y-1">
         <h1 className="text-[32px] text-[#149eca] font-['Lora'] tracking-wide">
           Amplify
         </h1>
@@ -70,6 +74,7 @@ export default function Register() {
                 type="text"
                 placeholder="John"
                 className="w-full px-4 py-3 rounded-xl text-sm text-white/90 placeholder:text-gray-500 bg-gray-700 border border-white/10 focus:outline-none focus:border-blue-400/50 focus:bg-white/10 focus:ring-2 focus:ring-blue-400/10 transition-all"
+                required
               />
             </div>
             <div className="flex flex-col gap-1 flex-1">
@@ -84,8 +89,24 @@ export default function Register() {
                 type="text"
                 placeholder="Smith"
                 className="w-full px-4 py-3 rounded-xl text-sm text-white/90 placeholder:text-gray-500 bg-gray-700 border border-white/10 focus:outline-none focus:border-blue-400/50 focus:bg-white/10 focus:ring-2 focus:ring-blue-400/10 transition-all"
+                required
               />
             </div>
+            </div>
+            <div className="flex flex-col gap-1">
+              <Label className="text-xs font-semibold uppercase tracking-wide text-white/50">
+                Display Name
+              </Label>
+              <Input
+                id="register-display-name"
+                onChange={(e) => setDisplayName(e.target.value)}
+                value={displayName}
+                name="display-name"
+                type="display-name"
+                placeholder="johnsmith123"
+                className="w-full px-4 py-3 rounded-xl text-sm text-white/90 placeholder:text-gray-500 bg-gray-700 border border-white/10 focus:outline-none focus:border-blue-400/50 focus:bg-white/10 focus:ring-2 focus:ring-blue-400/10 transition-all"
+                required
+              />
             </div>
             <div className="flex flex-col gap-1">
               <Label className="text-xs font-semibold uppercase tracking-wide text-white/50">
@@ -141,7 +162,7 @@ export default function Register() {
 
             <Button
               type="submit"
-              className="w-full py-3 rounded-xl text-white font-semibold font-['Nunito_Sans'] cursor-pointer transition-colors mt-1 bg-[#415a77] hover:bg-[#31455a]"
+              className="w-full shadow-lg shadow-[#415a77] py-3 rounded-xl text-white font-semibold font-['Nunito_Sans'] cursor-pointer transition-colors mt-1 bg-[#149eca] hover:bg-[#0e7ea3] hover:shadow-lg"
             >
               Create Account
             </Button>

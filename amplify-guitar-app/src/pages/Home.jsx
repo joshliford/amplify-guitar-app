@@ -23,7 +23,7 @@ export default function Home({ streak, level, currentXP, xpNeeded, addXP, comple
   const reward = rewards.find((r) => r.level === level);
 
   return (
-    <main className="bg-[#FFFEF7] dark:bg-black font-['Nunito-Sans'] py-4 px-4">
+    <main className="grid grid-cols-2 gap-4 bg-[#f9fafb] dark:bg-[#1a2536] font-['Nunito-Sans'] py-12 px-16">
       <SectionCard
         title={`Welcome Back, Josh!`}
         icon={<Zap size={35} className="text-[#FFFEF7] dark:text-black" />}
